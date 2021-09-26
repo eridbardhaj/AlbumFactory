@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91A9475D6F707CF45B096DCB /* libPods-AlbumFactory.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D950E9194927B5B2D19B1910 /* libPods-AlbumFactory.a */; };
+		E85C05DB2701195400F582BA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C05DA2701195400F582BA /* NetworkRequest.swift */; };
+		E85C05DF27011ABA00F582BA /* ArtistNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C05DE27011ABA00F582BA /* ArtistNetworkRequest.swift */; };
+		E85C05E127011B3B00F582BA /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C05E027011B3B00F582BA /* HTTPMethod.swift */; };
+		E85C05E32701244600F582BA /* AlbumNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C05E22701244600F582BA /* AlbumNetworkRequest.swift */; };
 		E8FE96D326FD41EC0008FA8A /* AlbumFactoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */; };
 		E8FE96D526FD41EC0008FA8A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96D426FD41EC0008FA8A /* ContentView.swift */; };
 		E8FE96D726FD41EF0008FA8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FE96D626FD41EF0008FA8A /* Assets.xcassets */; };
@@ -14,15 +19,12 @@
 		E8FE96E426FD41EF0008FA8A /* AlbumFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96E326FD41EF0008FA8A /* AlbumFactoryTests.swift */; };
 		E8FE96EE26FD41EF0008FA8A /* AlbumFactoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96ED26FD41EF0008FA8A /* AlbumFactoryUITests.swift */; };
 		E8FE96F026FD41EF0008FA8A /* AlbumFactoryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96EF26FD41EF0008FA8A /* AlbumFactoryUITestsLaunchTests.swift */; };
-		E8FE96FE26FD44070008FA8A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96FD26FD44070008FA8A /* HomeView.swift */; };
 		E8FE970126FD4D210008FA8A /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970026FD4D210008FA8A /* CollectionView.swift */; };
-		E8FE970326FD4DC50008FA8A /* HomeCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970226FD4DC50008FA8A /* HomeCollectionItem.swift */; };
 		E8FE970526FD4FC40008FA8A /* CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970426FD4FC30008FA8A /* CollectionViewLayout.swift */; };
 		E8FE970726FE503E0008FA8A /* CollectionCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970626FE503E0008FA8A /* CollectionCellContentView.swift */; };
 		E8FE970B27000E360008FA8A /* Array+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970A27000E360008FA8A /* Array+Generic.swift */; };
-		E8FE970D2700833B0008FA8A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970C2700833A0008FA8A /* HomeViewModel.swift */; };
-		E8FE9712270085580008FA8A /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970F270085580008FA8A /* NetworkAPI.swift */; };
-		E8FE9713270085580008FA8A /* NetworkAPIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9710270085580008FA8A /* NetworkAPIConfiguration.swift */; };
+		E8FE9712270085580008FA8A /* NetworkKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970F270085580008FA8A /* NetworkKit.swift */; };
+		E8FE9713270085580008FA8A /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9710270085580008FA8A /* NetworkConfiguration.swift */; };
 		E8FE9714270085580008FA8A /* NetworkAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9711270085580008FA8A /* NetworkAgent.swift */; };
 		E8FE9716270087A50008FA8A /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9715270087A50008FA8A /* NetworkHandler.swift */; };
 		E8FE9719270088D20008FA8A /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9718270088D20008FA8A /* Album.swift */; };
@@ -49,6 +51,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		89B5F3D4DFE26F53CB4D6063 /* Pods-AlbumFactory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlbumFactory.release.xcconfig"; path = "Target Support Files/Pods-AlbumFactory/Pods-AlbumFactory.release.xcconfig"; sourceTree = "<group>"; };
+		D950E9194927B5B2D19B1910 /* libPods-AlbumFactory.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlbumFactory.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E85C05DA2701195400F582BA /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		E85C05DE27011ABA00F582BA /* ArtistNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistNetworkRequest.swift; sourceTree = "<group>"; };
+		E85C05E027011B3B00F582BA /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		E85C05E22701244600F582BA /* AlbumNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumNetworkRequest.swift; sourceTree = "<group>"; };
 		E8FE96CF26FD41EC0008FA8A /* AlbumFactory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumFactory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFactoryApp.swift; sourceTree = "<group>"; };
 		E8FE96D426FD41EC0008FA8A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,21 +67,19 @@
 		E8FE96E926FD41EF0008FA8A /* AlbumFactoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlbumFactoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE96ED26FD41EF0008FA8A /* AlbumFactoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFactoryUITests.swift; sourceTree = "<group>"; };
 		E8FE96EF26FD41EF0008FA8A /* AlbumFactoryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFactoryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E8FE96FD26FD44070008FA8A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E8FE970026FD4D210008FA8A /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
-		E8FE970226FD4DC50008FA8A /* HomeCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionItem.swift; sourceTree = "<group>"; };
 		E8FE970426FD4FC30008FA8A /* CollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayout.swift; sourceTree = "<group>"; };
 		E8FE970626FE503E0008FA8A /* CollectionCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellContentView.swift; sourceTree = "<group>"; };
 		E8FE970A27000E360008FA8A /* Array+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Generic.swift"; sourceTree = "<group>"; };
-		E8FE970C2700833A0008FA8A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		E8FE970F270085580008FA8A /* NetworkAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
-		E8FE9710270085580008FA8A /* NetworkAPIConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAPIConfiguration.swift; sourceTree = "<group>"; };
+		E8FE970F270085580008FA8A /* NetworkKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkKit.swift; sourceTree = "<group>"; };
+		E8FE9710270085580008FA8A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		E8FE9711270085580008FA8A /* NetworkAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAgent.swift; sourceTree = "<group>"; };
 		E8FE9715270087A50008FA8A /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		E8FE9718270088D20008FA8A /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		E8FE971A270088DA0008FA8A /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		E8FE971C27009AFC0008FA8A /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		E8FE971E2700F46B0008FA8A /* String+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Generic.swift"; sourceTree = "<group>"; };
+		EE8848787C0680FF4EE74229 /* Pods-AlbumFactory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlbumFactory.debug.xcconfig"; path = "Target Support Files/Pods-AlbumFactory/Pods-AlbumFactory.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A9475D6F707CF45B096DCB /* libPods-AlbumFactory.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +108,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA8B032AC177E6A8EAB2DEC2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE8848787C0680FF4EE74229 /* Pods-AlbumFactory.debug.xcconfig */,
+				89B5F3D4DFE26F53CB4D6063 /* Pods-AlbumFactory.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		C75978B1F7EC5D73D3BF9908 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D950E9194927B5B2D19B1910 /* libPods-AlbumFactory.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E85C05DC27011A7600F582BA /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE970F270085580008FA8A /* NetworkKit.swift */,
+				E8FE9711270085580008FA8A /* NetworkAgent.swift */,
+				E8FE9710270085580008FA8A /* NetworkConfiguration.swift */,
+				E8FE9715270087A50008FA8A /* NetworkHandler.swift */,
+				E85C05DA2701195400F582BA /* NetworkRequest.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		E85C05DD27011A9200F582BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E85C05DE27011ABA00F582BA /* ArtistNetworkRequest.swift */,
+				E85C05E22701244600F582BA /* AlbumNetworkRequest.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		E8FE96C626FD41EC0008FA8A = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +154,8 @@
 				E8FE96E226FD41EF0008FA8A /* AlbumFactoryTests */,
 				E8FE96EC26FD41EF0008FA8A /* AlbumFactoryUITests */,
 				E8FE96D026FD41EC0008FA8A /* Products */,
+				AA8B032AC177E6A8EAB2DEC2 /* Pods */,
+				C75978B1F7EC5D73D3BF9908 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,7 +175,6 @@
 				E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */,
 				E8FE96D426FD41EC0008FA8A /* ContentView.swift */,
 				E8FE96D626FD41EF0008FA8A /* Assets.xcassets */,
-				E8FE96FC26FD43710008FA8A /* Home */,
 				E8FE970E2700852D0008FA8A /* Network */,
 				E8FE9717270088AA0008FA8A /* Data */,
 				E8FE970827000E260008FA8A /* Utils */,
@@ -162,16 +209,6 @@
 			path = AlbumFactoryUITests;
 			sourceTree = "<group>";
 		};
-		E8FE96FC26FD43710008FA8A /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				E8FE96FD26FD44070008FA8A /* HomeView.swift */,
-				E8FE970226FD4DC50008FA8A /* HomeCollectionItem.swift */,
-				E8FE970C2700833A0008FA8A /* HomeViewModel.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		E8FE96FF26FD4D150008FA8A /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				E8FE970927000E2E0008FA8A /* Extensions */,
+				E85C05E027011B3B00F582BA /* HTTPMethod.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -202,10 +240,8 @@
 		E8FE970E2700852D0008FA8A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				E8FE970F270085580008FA8A /* NetworkAPI.swift */,
-				E8FE9711270085580008FA8A /* NetworkAgent.swift */,
-				E8FE9710270085580008FA8A /* NetworkAPIConfiguration.swift */,
-				E8FE9715270087A50008FA8A /* NetworkHandler.swift */,
+				E85C05DC27011A7600F582BA /* Internal */,
+				E85C05DD27011A9200F582BA /* Resources */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -227,6 +263,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8FE96F326FD41EF0008FA8A /* Build configuration list for PBXNativeTarget "AlbumFactory" */;
 			buildPhases = (
+				BCE9DDBC74AA2B1F0301BA9C /* [CP] Check Pods Manifest.lock */,
 				E8FE96CB26FD41EC0008FA8A /* Sources */,
 				E8FE96CC26FD41EC0008FA8A /* Frameworks */,
 				E8FE96CD26FD41EC0008FA8A /* Resources */,
@@ -345,28 +382,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BCE9DDBC74AA2B1F0301BA9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlbumFactory-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E8FE96CB26FD41EC0008FA8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FE96FE26FD44070008FA8A /* HomeView.swift in Sources */,
-				E8FE9712270085580008FA8A /* NetworkAPI.swift in Sources */,
+				E8FE9712270085580008FA8A /* NetworkKit.swift in Sources */,
 				E8FE9714270085580008FA8A /* NetworkAgent.swift in Sources */,
 				E8FE971B270088DA0008FA8A /* Artist.swift in Sources */,
-				E8FE970D2700833B0008FA8A /* HomeViewModel.swift in Sources */,
 				E8FE970526FD4FC40008FA8A /* CollectionViewLayout.swift in Sources */,
+				E85C05DB2701195400F582BA /* NetworkRequest.swift in Sources */,
 				E8FE9719270088D20008FA8A /* Album.swift in Sources */,
 				E8FE970726FE503E0008FA8A /* CollectionCellContentView.swift in Sources */,
-				E8FE9713270085580008FA8A /* NetworkAPIConfiguration.swift in Sources */,
+				E8FE9713270085580008FA8A /* NetworkConfiguration.swift in Sources */,
 				E8FE96D526FD41EC0008FA8A /* ContentView.swift in Sources */,
 				E8FE9716270087A50008FA8A /* NetworkHandler.swift in Sources */,
 				E8FE971D27009AFC0008FA8A /* Track.swift in Sources */,
 				E8FE970126FD4D210008FA8A /* CollectionView.swift in Sources */,
+				E85C05E127011B3B00F582BA /* HTTPMethod.swift in Sources */,
 				E8FE971F2700F46B0008FA8A /* String+Generic.swift in Sources */,
 				E8FE970B27000E360008FA8A /* Array+Generic.swift in Sources */,
-				E8FE970326FD4DC50008FA8A /* HomeCollectionItem.swift in Sources */,
 				E8FE96D326FD41EC0008FA8A /* AlbumFactoryApp.swift in Sources */,
+				E85C05E32701244600F582BA /* AlbumNetworkRequest.swift in Sources */,
+				E85C05DF27011ABA00F582BA /* ArtistNetworkRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +584,7 @@
 		};
 		E8FE96F426FD41EF0008FA8A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE8848787C0680FF4EE74229 /* Pods-AlbumFactory.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -551,6 +615,7 @@
 		};
 		E8FE96F526FD41EF0008FA8A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89B5F3D4DFE26F53CB4D6063 /* Pods-AlbumFactory.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
