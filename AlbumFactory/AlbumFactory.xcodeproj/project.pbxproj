@@ -20,6 +20,15 @@
 		E8FE970526FD4FC40008FA8A /* CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970426FD4FC30008FA8A /* CollectionViewLayout.swift */; };
 		E8FE970726FE503E0008FA8A /* CollectionCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970626FE503E0008FA8A /* CollectionCellContentView.swift */; };
 		E8FE970B27000E360008FA8A /* Array+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970A27000E360008FA8A /* Array+Generic.swift */; };
+		E8FE970D2700833B0008FA8A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970C2700833A0008FA8A /* HomeViewModel.swift */; };
+		E8FE9712270085580008FA8A /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE970F270085580008FA8A /* NetworkAPI.swift */; };
+		E8FE9713270085580008FA8A /* NetworkAPIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9710270085580008FA8A /* NetworkAPIConfiguration.swift */; };
+		E8FE9714270085580008FA8A /* NetworkAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9711270085580008FA8A /* NetworkAgent.swift */; };
+		E8FE9716270087A50008FA8A /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9715270087A50008FA8A /* NetworkHandler.swift */; };
+		E8FE9719270088D20008FA8A /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9718270088D20008FA8A /* Album.swift */; };
+		E8FE971B270088DA0008FA8A /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE971A270088DA0008FA8A /* Artist.swift */; };
+		E8FE971D27009AFC0008FA8A /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE971C27009AFC0008FA8A /* Track.swift */; };
+		E8FE971F2700F46B0008FA8A /* String+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE971E2700F46B0008FA8A /* String+Generic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +65,15 @@
 		E8FE970426FD4FC30008FA8A /* CollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayout.swift; sourceTree = "<group>"; };
 		E8FE970626FE503E0008FA8A /* CollectionCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellContentView.swift; sourceTree = "<group>"; };
 		E8FE970A27000E360008FA8A /* Array+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Generic.swift"; sourceTree = "<group>"; };
+		E8FE970C2700833A0008FA8A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E8FE970F270085580008FA8A /* NetworkAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
+		E8FE9710270085580008FA8A /* NetworkAPIConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAPIConfiguration.swift; sourceTree = "<group>"; };
+		E8FE9711270085580008FA8A /* NetworkAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAgent.swift; sourceTree = "<group>"; };
+		E8FE9715270087A50008FA8A /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
+		E8FE9718270088D20008FA8A /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		E8FE971A270088DA0008FA8A /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		E8FE971C27009AFC0008FA8A /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		E8FE971E2700F46B0008FA8A /* String+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Generic.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +124,14 @@
 		E8FE96D126FD41EC0008FA8A /* AlbumFactory */ = {
 			isa = PBXGroup;
 			children = (
-				E8FE970827000E260008FA8A /* Utils */,
-				E8FE96FF26FD4D150008FA8A /* CommonUI */,
-				E8FE96FC26FD43710008FA8A /* Home */,
 				E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */,
 				E8FE96D426FD41EC0008FA8A /* ContentView.swift */,
 				E8FE96D626FD41EF0008FA8A /* Assets.xcassets */,
+				E8FE96FC26FD43710008FA8A /* Home */,
+				E8FE970E2700852D0008FA8A /* Network */,
+				E8FE9717270088AA0008FA8A /* Data */,
+				E8FE970827000E260008FA8A /* Utils */,
+				E8FE96FF26FD4D150008FA8A /* CommonUI */,
 				E8FE96D826FD41EF0008FA8A /* Preview Content */,
 			);
 			path = AlbumFactory;
@@ -147,6 +167,7 @@
 			children = (
 				E8FE96FD26FD44070008FA8A /* HomeView.swift */,
 				E8FE970226FD4DC50008FA8A /* HomeCollectionItem.swift */,
+				E8FE970C2700833A0008FA8A /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -173,8 +194,30 @@
 			isa = PBXGroup;
 			children = (
 				E8FE970A27000E360008FA8A /* Array+Generic.swift */,
+				E8FE971E2700F46B0008FA8A /* String+Generic.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E8FE970E2700852D0008FA8A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE970F270085580008FA8A /* NetworkAPI.swift */,
+				E8FE9711270085580008FA8A /* NetworkAgent.swift */,
+				E8FE9710270085580008FA8A /* NetworkAPIConfiguration.swift */,
+				E8FE9715270087A50008FA8A /* NetworkHandler.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E8FE9717270088AA0008FA8A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE9718270088D20008FA8A /* Album.swift */,
+				E8FE971A270088DA0008FA8A /* Artist.swift */,
+				E8FE971C27009AFC0008FA8A /* Track.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,10 +351,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8FE96FE26FD44070008FA8A /* HomeView.swift in Sources */,
+				E8FE9712270085580008FA8A /* NetworkAPI.swift in Sources */,
+				E8FE9714270085580008FA8A /* NetworkAgent.swift in Sources */,
+				E8FE971B270088DA0008FA8A /* Artist.swift in Sources */,
+				E8FE970D2700833B0008FA8A /* HomeViewModel.swift in Sources */,
 				E8FE970526FD4FC40008FA8A /* CollectionViewLayout.swift in Sources */,
+				E8FE9719270088D20008FA8A /* Album.swift in Sources */,
 				E8FE970726FE503E0008FA8A /* CollectionCellContentView.swift in Sources */,
+				E8FE9713270085580008FA8A /* NetworkAPIConfiguration.swift in Sources */,
 				E8FE96D526FD41EC0008FA8A /* ContentView.swift in Sources */,
+				E8FE9716270087A50008FA8A /* NetworkHandler.swift in Sources */,
+				E8FE971D27009AFC0008FA8A /* Track.swift in Sources */,
 				E8FE970126FD4D210008FA8A /* CollectionView.swift in Sources */,
+				E8FE971F2700F46B0008FA8A /* String+Generic.swift in Sources */,
 				E8FE970B27000E360008FA8A /* Array+Generic.swift in Sources */,
 				E8FE970326FD4DC50008FA8A /* HomeCollectionItem.swift in Sources */,
 				E8FE96D326FD41EC0008FA8A /* AlbumFactoryApp.swift in Sources */,
