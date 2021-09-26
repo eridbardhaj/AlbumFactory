@@ -147,6 +147,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E85C05E427012CBA00F582BA /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */,
+				E8FE96D426FD41EC0008FA8A /* ContentView.swift */,
+				E8FE96D626FD41EF0008FA8A /* Assets.xcassets */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		E8FE96C626FD41EC0008FA8A = {
 			isa = PBXGroup;
 			children = (
@@ -172,9 +182,7 @@
 		E8FE96D126FD41EC0008FA8A /* AlbumFactory */ = {
 			isa = PBXGroup;
 			children = (
-				E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */,
-				E8FE96D426FD41EC0008FA8A /* ContentView.swift */,
-				E8FE96D626FD41EF0008FA8A /* Assets.xcassets */,
+				E85C05E427012CBA00F582BA /* App */,
 				E8FE970E2700852D0008FA8A /* Network */,
 				E8FE9717270088AA0008FA8A /* Data */,
 				E8FE970827000E260008FA8A /* Utils */,
