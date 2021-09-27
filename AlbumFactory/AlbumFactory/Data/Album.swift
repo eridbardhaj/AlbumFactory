@@ -1,11 +1,12 @@
 import Foundation
 
-public struct Album: Decodable, Equatable {
+public struct Album: Decodable, Equatable, Identifiable {
 
     // MARK: - Inner Types
 
     enum CodingKeys: String, CodingKey {
-        case id         = "mbid"
+        case id
+        case mbid
         case name
         case plays      = "playcount"
         case listeners
@@ -25,7 +26,8 @@ public struct Album: Decodable, Equatable {
     // MARK: - Properties
     // MARK: Immutable
 
-    public private(set) var id: String?
+    public let id = UUID()
+    public let mbid: String?
     public let name: String?
     public let plays: String?
     public let listeners: String?
@@ -38,7 +40,7 @@ public struct Album: Decodable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(String.self, forKey: .id)
+        mbid = try values.decodeIfPresent(String.self, forKey: .mbid)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         do {
             plays = try values.decode(String.self, forKey: .plays)
@@ -59,27 +61,19 @@ public struct Album: Decodable, Equatable {
 
     // MARK: - Initializers
 
-    public init(id: String,
+    public init(mbid: String?,
                 name: String?,
                 plays: String?,
                 listeners: String?,
                 visitUrl: String?,
                 imageUrl: String?,
                 tracks: [Track]) {
-        self.id = id
+        self.mbid = mbid
         self.name = name
         self.plays = plays
         self.listeners = listeners
         self.visitUrl = visitUrl
         self.imageUrl = imageUrl
         self.tracks = tracks
-    }
-
-    // MARK: - Actions
-
-    public mutating func updateAlbumId(albumId: String) {
-        if id == nil {
-            self.id = albumId
-        }
     }
 }
