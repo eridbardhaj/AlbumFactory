@@ -34,6 +34,7 @@ extension NetworkRequest {
         var urlComponents = URLComponents()
         urlComponents.scheme = NetworkConfiguration.scheme
         urlComponents.host = NetworkConfiguration.host
+        urlComponents.path = NetworkConfiguration.path
         urlComponents.queryItems = defaultQueryItems + queryItems
         return urlComponents.url
     }
