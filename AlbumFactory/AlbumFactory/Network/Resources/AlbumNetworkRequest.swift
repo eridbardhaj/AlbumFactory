@@ -18,10 +18,10 @@ enum AlbumNetworkRequest {
         // MARK: NetworkRequest
 
         var httpMethod: HTTPMethod? { .get }
-        var resource: String { "artist.getinfo" }
+        var resource: String { "album.getinfo" }
         var queryItems: [URLQueryItem] {
             [ URLQueryItem(name: "mbid", value: albumId) ]
         }
-        typealias ResponseType = Album
+        typealias ResponseType = AlbumInfoResponse
     }
 }

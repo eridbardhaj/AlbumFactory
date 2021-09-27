@@ -7,7 +7,7 @@ public struct Artist: Decodable, Equatable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case id              = "mbid"
         case name
-        case listenersCount  = "listeners"
+        case listeners
         case visitUrl        = "url"
         case images          = "image"
         case image           = "#text"
@@ -18,9 +18,9 @@ public struct Artist: Decodable, Equatable, Identifiable {
 
     public let id: String
     public let name: String
-    public let listenersCount: Int
-    public let visitUrl: URL
-    public let imageUrl: URL
+    public let listeners: String?
+    public let visitUrl: String?
+    public let imageUrl: String?
 
     // MARK: - Protocol Conformance
     // MARK: Codable
@@ -29,23 +29,25 @@ public struct Artist: Decodable, Equatable, Identifiable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(String.self, forKey: .id)
         name = try values.decode(String.self, forKey: .name)
-        listenersCount = try values.decode(Int.self, forKey: .listenersCount)
-        visitUrl = try values.decode(URL.self, forKey: .visitUrl)
+        listeners = try values.decodeIfPresent(String.self, forKey: .listeners)
+        visitUrl = try values.decodeIfPresent(String.self, forKey: .visitUrl)
 
         var reviewCountContainer = try values.nestedUnkeyedContainer(forKey: .images)
         let firstReviewCountContainer = try reviewCountContainer.nestedContainer(keyedBy: CodingKeys.self)
 
-        imageUrl = try firstReviewCountContainer.decode(URL.self, forKey: .image)
+        imageUrl = try firstReviewCountContainer.decode(String.self, forKey: .image)
     }
+
+    // MARK: - Initializers
 
     public init(id: String,
                 name: String,
-                listenersCount: Int,
-                visitUrl: URL,
-                imageUrl: URL) {
+                listeners: String?,
+                visitUrl: String?,
+                imageUrl: String?) {
         self.id = id
         self.name = name
-        self.listenersCount = listenersCount
+        self.listeners = listeners
         self.visitUrl = visitUrl
         self.imageUrl = imageUrl
     }
