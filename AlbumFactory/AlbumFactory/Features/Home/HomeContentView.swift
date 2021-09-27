@@ -17,22 +17,18 @@ struct HomeContentView: View {
 
     var body: some View {
         Group {
-            ScrollView {
-                LazyVStack {
-                    ForEach(viewModel.albums, id: \.id) { album in
-                        Text(album.name ?? "N/A")
-                    }
-                    .navigationTitle(viewModel.titleText)
-                }
-                .edgesIgnoringSafeArea(.bottom)
+            CollectionView(items: $viewModel.albums) { album, _ in
+                let viewModel = HomeContentItemViewModel(album: album)
+                HomeContentItemView(viewModel: viewModel)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .navigationTitle("Albums")
         }
-        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
 
-struct BeerListView_Previews: PreviewProvider {
+struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
         Text("Hello")
     }

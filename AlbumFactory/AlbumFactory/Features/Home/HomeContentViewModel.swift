@@ -14,8 +14,7 @@ class HomeContentViewModel: ObservableObject {
 
     // MARK: Published
 
-    @Published private(set) var albums = [Album]()
-    @Published private(set) var titleText = "Albums"
+    @Published var albums = [Album]()
 
     // MARK: - Initializers
 
