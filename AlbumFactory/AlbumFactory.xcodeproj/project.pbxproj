@@ -18,7 +18,6 @@
 		E85C05F0270149B400F582BA /* HomeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C05EF270149B400F582BA /* HomeContentView.swift */; };
 		E85C05F2270149C800F582BA /* HomeContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C05F1270149C800F582BA /* HomeContentViewModel.swift */; };
 		E8FE96D326FD41EC0008FA8A /* AlbumFactoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */; };
-		E8FE96D526FD41EC0008FA8A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96D426FD41EC0008FA8A /* ContentView.swift */; };
 		E8FE96D726FD41EF0008FA8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FE96D626FD41EF0008FA8A /* Assets.xcassets */; };
 		E8FE96DA26FD41EF0008FA8A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FE96D926FD41EF0008FA8A /* Preview Assets.xcassets */; };
 		E8FE96E426FD41EF0008FA8A /* AlbumFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE96E326FD41EF0008FA8A /* AlbumFactoryTests.swift */; };
@@ -70,7 +69,6 @@
 		E85C05F32701525000F582BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FE96CF26FD41EC0008FA8A /* AlbumFactory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumFactory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFactoryApp.swift; sourceTree = "<group>"; };
-		E8FE96D426FD41EC0008FA8A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E8FE96D626FD41EF0008FA8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8FE96D926FD41EF0008FA8A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E8FE96DF26FD41EF0008FA8A /* AlbumFactoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlbumFactoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,9 +159,8 @@
 		E85C05E427012CBA00F582BA /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E85C05F32701525000F582BA /* Info.plist */,
 				E8FE96D226FD41EC0008FA8A /* AlbumFactoryApp.swift */,
-				E8FE96D426FD41EC0008FA8A /* ContentView.swift */,
+				E85C05F32701525000F582BA /* Info.plist */,
 				E8FE96D626FD41EF0008FA8A /* Assets.xcassets */,
 			);
 			path = App;
@@ -471,7 +468,6 @@
 				E8FE9719270088D20008FA8A /* Album.swift in Sources */,
 				E8FE970726FE503E0008FA8A /* CollectionCellContentView.swift in Sources */,
 				E8FE9713270085580008FA8A /* NetworkConfiguration.swift in Sources */,
-				E8FE96D526FD41EC0008FA8A /* ContentView.swift in Sources */,
 				E85C05EC270147FE00F582BA /* AlbumInfoResponse.swift in Sources */,
 				E8FE9716270087A50008FA8A /* NetworkHandler.swift in Sources */,
 				E85C05F2270149C800F582BA /* HomeContentViewModel.swift in Sources */,

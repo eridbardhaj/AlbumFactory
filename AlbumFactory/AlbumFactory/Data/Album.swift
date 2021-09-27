@@ -22,7 +22,6 @@ public struct Album: Decodable, Equatable {
         case track
     }
 
-
     // MARK: - Properties
     // MARK: Immutable
 
