@@ -22,7 +22,7 @@ enum ArtistNetworkRequest {
         var queryItems: [URLQueryItem] {
             [ URLQueryItem(name: "artist", value: textQuery) ]
         }
-        typealias ResponseType = [Artist]
+        typealias ResponseType = ArtistSearchResponse
     }
 
     struct Albums: NetworkRequest {
@@ -46,6 +46,6 @@ enum ArtistNetworkRequest {
         var queryItems: [URLQueryItem] {
             [ URLQueryItem(name: "mbid", value: artistId) ]
         }
-        typealias ResponseType = [Album]
+        typealias ResponseType = ArtistAlbumsResponse
     }
 }
