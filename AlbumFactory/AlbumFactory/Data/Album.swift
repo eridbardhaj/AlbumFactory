@@ -50,10 +50,10 @@ public struct Album: Decodable, Equatable, Identifiable {
         listeners = try values.decodeIfPresent(String.self, forKey: .listeners)
         visitUrl = try values.decodeIfPresent(String.self, forKey: .visitUrl)
 
-        var reviewCountContainer = try values.nestedUnkeyedContainer(forKey: .images)
-        let firstReviewCountContainer = try reviewCountContainer.nestedContainer(keyedBy: CodingKeys.self)
-
-        imageUrl = try firstReviewCountContainer.decodeIfPresent(String.self, forKey: .image)
+        let imageObjects = try values.decode([ImageObject].self, forKey: .images)
+        imageUrl = imageObjects
+            .first { $0.size == .extraLarge }
+            .map { $0.imageURLString }
 
         let tracksContainer = try? values.nestedContainer(keyedBy: TrackCodingKeys.self, forKey: .tracks)
         tracks = try tracksContainer?.decodeIfPresent([Track].self, forKey: .track) ?? []
