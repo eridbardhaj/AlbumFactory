@@ -2,7 +2,11 @@ import Foundation
 import Combine
 
 protocol NetworkAPI {
-    func run<Request: NetworkRequest>(request: Request) -> AnyPublisher<Request.ResponseType, Error>
+    func run<Response: Decodable>(request: URLRequest) -> AnyPublisher<Response, Error>
+
+    func albumDetails(_ albumId: String) -> AnyPublisher<AlbumNetworkRequest.Details.ResponseType, Error>
+    func artistAlbums(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Albums.ResponseType, Error>
+    func searchArtists(searchKeyword search: String) -> AnyPublisher<ArtistNetworkRequest.Search.ResponseType, Error>
 }
 
 enum NetworkKitError: Error {
@@ -26,14 +30,22 @@ class NetworkKit: NetworkAPI {
     // MARK: - Protocol Conformance
     // MARK: NetworkAPI
 
-    func run<Request: NetworkRequest>(request: Request) -> AnyPublisher<Request.ResponseType, Error> {
-        guard let urlRequest = request.urlRequest else {
-            return Fail(error: NetworkKitError.invalidURLRequest).eraseToAnyPublisher()
-        }
-
-        return agent.run(urlRequest)
+    func run<Response: Decodable>(request: URLRequest) -> AnyPublisher<Response, Error> {
+        agent.run(request)
             .map(\.value)
             .eraseToAnyPublisher()
+    }
+
+    func albumDetails(_ albumId: String) -> AnyPublisher<AlbumNetworkRequest.Details.ResponseType, Error> {
+        run(request: AlbumNetworkRequest.Details(albumId: albumId).urlRequest)
+    }
+
+    func artistAlbums(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Albums.ResponseType, Error> {
+        run(request: ArtistNetworkRequest.Albums(artistId: artistId).urlRequest)
+    }
+
+    func searchArtists(searchKeyword search: String) -> AnyPublisher<ArtistNetworkRequest.Search.ResponseType, Error> {
+        run(request: ArtistNetworkRequest.Search(textQuery: search).urlRequest)
     }
 }
 

@@ -18,7 +18,7 @@ enum AlbumNetworkRequest {
         // MARK: NetworkRequest
 
         var httpMethod: HTTPMethod? { .get }
-        var resource: String { "album.getinfo" }
+        var resource: NetworkResource { .albumDetails }
         var queryItems: [URLQueryItem] {
             [ URLQueryItem(name: "mbid", value: albumId) ]
         }

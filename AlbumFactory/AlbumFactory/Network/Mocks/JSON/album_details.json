@@ -1,0 +1,272 @@
+{
+    "album": {
+        "listeners": "707912",
+        "playcount": "5704203",
+        "artist": "Backstreet Boys",
+        "image": [
+            {
+                "size": "small",
+                "#text": "https://lastfm.freetls.fastly.net/i/u/34s/be7d9be5645e1a7d64f51579401e48c7.png"
+            },
+            {
+                "size": "medium",
+                "#text": "https://lastfm.freetls.fastly.net/i/u/64s/be7d9be5645e1a7d64f51579401e48c7.png"
+            },
+            {
+                "size": "large",
+                "#text": "https://lastfm.freetls.fastly.net/i/u/174s/be7d9be5645e1a7d64f51579401e48c7.png"
+            },
+            {
+                "size": "extralarge",
+                "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/be7d9be5645e1a7d64f51579401e48c7.png"
+            },
+            {
+                "size": "mega",
+                "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/be7d9be5645e1a7d64f51579401e48c7.png"
+            },
+            {
+                "size": "",
+                "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/be7d9be5645e1a7d64f51579401e48c7.png"
+            }
+        ],
+        "url": "https://www.last.fm/music/Backstreet+Boys/Millennium",
+        "tags": {
+            "tag": [
+                {
+                    "name": "pop",
+                    "url": "https://www.last.fm/tag/pop"
+                },
+                {
+                    "name": "90s",
+                    "url": "https://www.last.fm/tag/90s"
+                },
+                {
+                    "name": "backstreet boys",
+                    "url": "https://www.last.fm/tag/backstreet+boys"
+                },
+                {
+                    "name": "boybands",
+                    "url": "https://www.last.fm/tag/boybands"
+                },
+                {
+                    "name": "dance",
+                    "url": "https://www.last.fm/tag/dance"
+                }
+            ]
+        },
+        "wiki": {
+            "published": "11 Nov 2020, 22:02",
+            "content": "It was a highly anticipated follow-up to both their United States debut album, and their second internationally released CD. It was their first record to be released in both the U.S. and internationally in the same form, at the same time. In the United States, it holds the record for most shipments in one year, with 11 million in 1999. It was nominated for five Grammy Awards and spawned four Top 40  singles, including the single \"I Want It That Way.\" Three of the singles, \"I Want It That Way\", \"Larger Than Life\" and \"Show Me The Meaning Of Being Lonely\", became some of their most successful and remembered hits of all time, with \"I Want It That Way\" becoming their biggest hit to date. It has since become one of the best selling albums of all time.\n\nPreceded by the worldwide hit single \"I Want It That Way\", anticipation for Millennium was high. On May 18, 1999, the day of the album's release, the Backstreet Boys made a heavily-publicized appearance on MTV's Total Request Live. Over 5,000 fans showed to catch a glimpse of the group, prompting police to shut down Times Square, where TRL was taped.\n\nMillennium entered the Billboard 200 at number one, where it remained for 10 non-consecutive weeks. It sold 1,134,000 copies in its first week of release, shattering the previous Nielsen SoundScan record held by Garth Brooks for single-week record sales. This record was subsequently overtaken in 2000 by Britney Spears with Oops!... I Did It Again, and then again by 'N Sync with No Strings Attached. Millennium sold nearly 500,000 copies in the U.S. on its first day alone, setting a record for first-day sales.\n\nMillennium became the best-selling album of 1999, selling 9,445,732 albums. Millennium remained on the Billboard chart for 93 weeks, eventually selling over 13 million copies in the United States and being certified 13 times platinum. As of the end of December 2008, the album stands as the fourth best selling album in the US of the SoundScan era with 12,104,000 units sold. In 2003 it was also reported as being the fourth biggest seller for Music Club sales in the US over the past 14 years with sales of 1.59 million. In Canada, the album is seventh biggest selling album since 1995 in the Canadian Soundscan sales era up to end of December 2007.\n\nMillennium dominated the worldwide charts, landing the number-one spot in Austria, Belgium, Canada, Denmark, Germany, Greece, the Netherlands, Hong Kong, Iceland, India, Indonesia, Italy, Korea, Malaysia, Mexico, New Zealand, Norway, Philippines, Portugal, Singapore, Spain, Sweden, Switzerland, Taiwan and Thailand.\n\nMillennium was honored with five 1999 Grammy Award nominations including \"Album of the Year.\" Also \"I Want It That Way\" was rated number three on VH1's 100 Greatest Songs of the 90's. <a href=\"https://www.last.fm/music/Backstreet+Boys/Millennium\">Read more on Last.fm</a>. User-contributed text is available under the Creative Commons By-SA License; additional terms may apply.",
+            "summary": "It was a highly anticipated follow-up to both their United States debut album, and their second internationally released CD. It was their first record to be released in both the U.S. and internationally in the same form, at the same time. In the United States, it holds the record for most shipments in one year, with 11 million in 1999. It was nominated for five Grammy Awards and spawned four Top 40 singles, including the single \"I Want It That Way.\" Three of the singles, \"I Want It That Way\", \"Larger Than Life\" and \"Show Me The Meaning Of Being <a href=\"https://www.last.fm/music/Backstreet+Boys/Millennium\">Read more on Last.fm</a>."
+        },
+        "name": "Millennium",
+        "tracks": {
+            "track": [
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 1
+                    },
+                    "duration": 232,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/Larger+Than+Life",
+                    "name": "Larger Than Life",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 2
+                    },
+                    "duration": 214,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/I+Want+It+That+Way",
+                    "name": "I Want It That Way",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 3
+                    },
+                    "duration": 234,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/Show+Me+the+Meaning+of+Being+Lonely",
+                    "name": "Show Me the Meaning of Being Lonely",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 4
+                    },
+                    "duration": 176,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/It%27s+Gotta+Be+You",
+                    "name": "It's Gotta Be You",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 5
+                    },
+                    "duration": 263,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/I+Need+You+Tonight",
+                    "name": "I Need You Tonight",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 6
+                    },
+                    "duration": 205,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/Don%27t+Want+You+Back",
+                    "name": "Don't Want You Back",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 7
+                    },
+                    "duration": 234,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/Don%27t+Wanna+Lose+You+Now",
+                    "name": "Don't Wanna Lose You Now",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 8
+                    },
+                    "duration": 225,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/The+One",
+                    "name": "The One",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 9
+                    },
+                    "duration": 261,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/Back+to+Your+Heart",
+                    "name": "Back to Your Heart",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 10
+                    },
+                    "duration": 233,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/Spanish+Eyes",
+                    "name": "Spanish Eyes",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 11
+                    },
+                    "duration": 222,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/No+One+Else+Comes+Close",
+                    "name": "No One Else Comes Close",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                },
+                {
+                    "artist": {
+                        "url": "https://www.last.fm/music/Backstreet+Boys",
+                        "name": "Backstreet Boys",
+                        "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+                    },
+                    "@attr": {
+                        "rank": 12
+                    },
+                    "duration": 253,
+                    "url": "https://www.last.fm/music/Backstreet+Boys/Millennium/The+Perfect+Fan",
+                    "name": "The Perfect Fan",
+                    "streamable": {
+                        "fulltrack": "0",
+                        "#text": "0"
+                    }
+                }
+            ]
+        }
+    }
+}

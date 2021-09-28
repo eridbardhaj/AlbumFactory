@@ -1,18 +1,24 @@
 import Foundation
 
+enum NetworkResource: String {
+    case artistSearch = "artist.search"
+    case artistAlbums = "artist.gettopalbums"
+    case albumDetails = "album.getinfo"
+}
+
 protocol NetworkRequest {
     associatedtype ResponseType: Decodable
 
     var httpMethod: HTTPMethod? { get }
-    var resource: String { get }
+    var resource: NetworkResource { get }
     var queryItems: [URLQueryItem] { get }
     var headers: [String: String] { get }
 }
 
 extension NetworkRequest {
 
-    var urlRequest: URLRequest? {
-        guard let targetURL = targetURL else { return nil }
+    var urlRequest: URLRequest {
+        guard let targetURL = targetURL else { preconditionFailure("There is something wrong building the target URL") }
         var urlRequest = URLRequest(url: targetURL)
 
         urlRequest.httpMethod = httpMethod?.rawValue
@@ -43,7 +49,7 @@ extension NetworkRequest {
         [
             URLQueryItem(name: "api_key", value: NetworkConfiguration.apiKey),
             URLQueryItem(name: "format", value: "json"),
-            URLQueryItem(name: "method", value: resource)
+            URLQueryItem(name: "method", value: resource.rawValue)
         ]
     }
 }

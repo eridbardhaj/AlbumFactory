@@ -18,7 +18,7 @@ enum ArtistNetworkRequest {
         // MARK: NetworkRequest
 
         var httpMethod: HTTPMethod? { .get }
-        var resource: String { "artist.search" }
+        var resource: NetworkResource { .artistSearch }
         var queryItems: [URLQueryItem] {
             [ URLQueryItem(name: "artist", value: textQuery) ]
         }
@@ -42,7 +42,7 @@ enum ArtistNetworkRequest {
         // MARK: NetworkRequest
 
         var httpMethod: HTTPMethod? { .get }
-        var resource: String { "artist.gettopalbums" }
+        var resource: NetworkResource { .artistAlbums }
         var queryItems: [URLQueryItem] {
             [ URLQueryItem(name: "mbid", value: artistId) ]
         }

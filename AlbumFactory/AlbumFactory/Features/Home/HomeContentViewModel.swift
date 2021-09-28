@@ -14,8 +14,7 @@ class HomeContentViewModel: ObservableObject {
 
     // MARK: Published
 
-    @Published private(set) var albums = [Album]()
-    @Published private(set) var titleText = "Albums"
+    @Published var albums = [Album]()
 
     // MARK: - Initializers
 
@@ -27,7 +26,7 @@ class HomeContentViewModel: ObservableObject {
     // MARK: - Setups
 
     private func setupObserving() {
-        networkAPI.run(request: ArtistNetworkRequest.Albums(artistId: "b95ce3ff-3d05-4e87-9e01-c97b66af13d4"))
+        networkAPI.artistAlbums("b95ce3ff-3d05-4e87-9e01-c97b66af13d4")
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { completion in
@@ -47,6 +46,6 @@ class HomeContentViewModel: ObservableObject {
     // MARK: Handlers
 
     private func handleResponse(_ response: ArtistAlbumsResponse) {
-        albums = response.albums
+        albums = response.albums.filter { $0.name != "(null)" }
     }
 }
