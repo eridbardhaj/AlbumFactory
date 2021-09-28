@@ -27,13 +27,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             networkAPI: dependencyResolver.networkAPI
         )
         appCoordinator.start()
-//
-//
-//        let viewModel = HomeContentViewModel(networkAPI: dependencyResolver.networkAPI)
-//        let homeViewController = UIHostingController<HomeContentView>(rootView: HomeContentView(viewModel: viewModel, coordinatorDelegate: nil))
-//        let navigationController = UINavigationController(rootViewController: homeViewController)
-//        window?.rootViewController = navigationController
-//        window?.makeKeyAndVisible()
 
         return true
     }
