@@ -30,6 +30,7 @@ struct HomeContentView: View {
 
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello")
+        let viewModel = HomeContentViewModel(networkAPI: NetworkAPIMock())
+        HomeContentView(viewModel: viewModel)
     }
 }

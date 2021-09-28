@@ -16,14 +16,19 @@ struct HomeContentItemView: View {
     // MARK: - View Configuration
 
     var body: some View {
-        VStack {
+        Group {
             switch viewModel.viewState {
             case .loading:
-                Rectangle()
-                    .background(Color.black)
+                ProgressView("Loading")
             case.dataLoaded(let content):
                 AsyncImage(imageURLString: content.imageUrlString)
-                Text(content.name)
+                VStack(alignment: .leading, spacing: 0) {
+                    Spacer()
+                    Text(content.name)
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.black.opacity(0.4))
+                }
             }
         }
     }
@@ -32,6 +37,12 @@ struct HomeContentItemView: View {
 
 struct HomeContentItemView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello")
+        let tracks = [
+            Track(name: "Not Afraid", duration: 200, visitUrl: nil),
+            Track(name: "Space Bound", duration: 192, visitUrl: nil),
+        ]
+        let album = Album(mbid: "123-123", name: "Recovery", plays: "111232", listeners: "200123", visitUrl: nil, imageUrl: "https://lastfm.freetls.fastly.net/i/u/174s/be7d9be5645e1a7d64f51579401e48c7.png", tracks: tracks)
+        let viewModel = HomeContentItemViewModel(album: album)
+        HomeContentItemView(viewModel: viewModel)
     }
 }

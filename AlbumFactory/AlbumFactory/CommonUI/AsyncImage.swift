@@ -25,8 +25,12 @@ struct AsyncImage: View {
         Group {
             if let image = image {
                 Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
             } else {
                 Image(uiImage: placeholder!)
+                    .resizable()
+                    .scaledToFit()
             }
         }
         .onReceive(imageLoader.image(for: imageURLString), perform: { image = $0 })
