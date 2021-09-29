@@ -8,4 +8,11 @@ target 'AlbumFactory' do
   pod 'Alamofire', '~> 5.4'
   pod 'AlamofireImage', '~> 4.1'
   pod 'RealmSwift', '~> 10'
+
+  target 'AlbumFactoryTests' do
+      inherit! :search_paths
+      use_frameworks!
+      pod 'Nimble'
+  end
+
 end
