@@ -35,11 +35,17 @@ struct HomeContentView: View {
                 }
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .navigationTitle("Albums")
+            .toolbar(content: {
+                Button(action: {
+                    coordinatorDelegate?.homeContentViewDidTapSearchButton()
+                }) {
+                    Image(systemName: "magnifyingglass")
+                }
+            })
+            .navigationBarTitle("Albums")
         }
     }
 }
-
 
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {

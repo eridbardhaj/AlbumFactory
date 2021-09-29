@@ -1,9 +1,10 @@
-import UIKit
+import Foundation
 import SwiftUI
 
 private enum AppStep: CoordinatorStep {
     case home
     case search
+    case albumList(artist: Artist)
     case albumInfo(album: Album)
 }
 
@@ -24,6 +25,7 @@ class AppCoordinator: NSObject, Coordinatable {
 
     var childCoordinators = [UUID: Coordinatable]()
     var dismissable: CoordinatorDismissable?
+    var navigationController = UINavigationController()
 
     // MARK: - Initializers
 
@@ -49,6 +51,8 @@ class AppCoordinator: NSObject, Coordinatable {
             showHome()
         case .search:
             showSearchArtists()
+        case .albumList(let artist):
+            showAlbumList(for: artist)
         case .albumInfo(let album):
             showAlbumInfo(album: album)
         }
@@ -62,13 +66,19 @@ class AppCoordinator: NSObject, Coordinatable {
 
     private func showHome() {
         let viewModel = HomeContentViewModel(networkAPI: networkAPI)
-        let homeViewController = UIHostingController<HomeContentView>(rootView: HomeContentView(viewModel: viewModel, coordinatorDelegate: self))
-        let navigationController = UINavigationController(rootViewController: homeViewController)
+        let viewController = UIHostingController(rootView: HomeContentView(viewModel: viewModel, coordinatorDelegate: self))
+        navigationController.viewControllers = [viewController]
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
-    private func showSearchArtists() {}
+    private func showSearchArtists() {
+        let viewModel = ArtistSearchContentViewModel(networkAPI: networkAPI)
+        let viewController = UIHostingController(rootView: ArtistSearchContentView(viewModel: viewModel, coordinatorDelegate: self))
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
+    private func showAlbumList(for artist: Artist) {}
 
     private func showAlbumInfo(album: Album) {}
 
@@ -86,5 +96,11 @@ extension AppCoordinator: HomeContentViewDelegate {
 
     func homeContentViewDidTapSearchButton() {
         coordinate(to: AppStep.search)
+    }
+}
+
+extension AppCoordinator: ArtistSearchContentViewDelegate {
+    func artistSearchContentViewDidSelectArtist(artist: Artist) {
+        coordinate(to: AppStep.albumList(artist: artist))
     }
 }
