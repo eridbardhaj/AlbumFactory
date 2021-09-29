@@ -20,11 +20,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        setupGlobals()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator = AppCoordinator(
             window: window,
             application: dependencyResolver.application,
-            networkAPI: dependencyResolver.networkAPI
+            networkAPI: dependencyResolver.networkAPI,
+            storeManager: dependencyResolver.storeManager
         )
         appCoordinator.start()
 
@@ -33,5 +36,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         appCoordinator.supportedOrientations
+    }
+
+    // MARK: - Setups
+
+    private func setupGlobals() {
+        RealmMigrator.setDefaultConfiguration()
     }
 }

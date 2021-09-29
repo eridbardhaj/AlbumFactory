@@ -1,5 +1,6 @@
 import Foundation
 import Alamofire
+import RealmSwift
 
 class DependencyResolver {
     static let session = Session()
@@ -8,4 +9,6 @@ class DependencyResolver {
     static let agent = NetworkAgent(networkHandler: networkHandler, jsonDecoder: jsonDecoder)
     static let networkAPI = NetworkKit(agent: agent)
     static let application: AppApplication = UIApplication.shared
+    static let realm = try! Realm()
+    static let storeManager = StoreManager(realm: realm)
 }
