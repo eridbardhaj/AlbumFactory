@@ -2,17 +2,20 @@ import Foundation
 import RealmSwift
 import Combine
 
-protocol Storable: AnyObject {
+protocol StoreManagerType: AnyObject {
     func storeAlbum(album: Album)
     func updateAlbumTracks(album: Album)
     func deleteAlbum(album: Album)
+    func isAlbumStored(album: Album) -> Bool
+
+    var results: Results<PersistedAlbum> { get } 
 }
 
 enum StoreManagerError: Error {
     case albumNotFound
 }
 
-class StoreManager: Storable {
+class StoreManager: StoreManagerType {
 
     // MARK: - Properties
     // MARK: Immutable
@@ -30,7 +33,7 @@ class StoreManager: Storable {
     }
 
     // MARK: - Protocol Conformance
-    // MARK: Storable
+    // MARK: StoreManagerType
 
     func updateAlbumTracks(album: Album) {
         guard let persistedAlbum = results.first(where: { $0.mbid == album.mbid }) else { return }
