@@ -7,8 +7,8 @@ class HomeViewModel: ObservableObject {
     // MARK: - Properties
     // MARK: Immutable
 
-    private let networkAPI: NetworkAPI
-    private let storeManager: StoreManager
+    private let networkKit: NetworkKitType
+    private let storeManager: StoreManagerType
 
     // MARK: Mutable
 
@@ -20,8 +20,8 @@ class HomeViewModel: ObservableObject {
     
     // MARK: - Initializers
 
-    init(networkAPI: NetworkAPI, storeManager: StoreManager) {
-        self.networkAPI = networkAPI
+    init(networkKit: NetworkKitType, storeManager: StoreManagerType) {
+        self.networkKit = networkKit
         self.storeManager = storeManager
         setupObserving()
     }

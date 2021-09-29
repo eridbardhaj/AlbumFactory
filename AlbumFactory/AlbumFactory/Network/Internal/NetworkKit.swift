@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-protocol NetworkAPI {
+protocol NetworkKitType {
     func run<Response: Decodable>(request: URLRequest) -> AnyPublisher<Response, Error>
 
     func albumDetails(_ albumId: String) -> AnyPublisher<AlbumNetworkRequest.Details.ResponseType, Error>
@@ -15,7 +15,7 @@ enum NetworkKitError: Error {
     case unexpected(code: Int)
 }
 
-class NetworkKit: NetworkAPI {
+class NetworkKit: NetworkKitType {
     
     // MARK: - Properties
     // MARK: Injected

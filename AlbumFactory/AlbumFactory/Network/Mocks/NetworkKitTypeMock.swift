@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class NetworkAPIMock: NetworkKit {
+class NetworkKitTypeMock: NetworkKit {
 
     init() {
         super.init(agent: DependencyResolver.agent)

@@ -15,8 +15,8 @@ class AppCoordinator: NSObject, Coordinatable {
 
     private let window: AppWindow?
     private let application: AppApplication
-    private let networkAPI: NetworkAPI
-    private let storeManager: StoreManager
+    private let networkKit: NetworkKitType
+    private let storeManager: StoreManagerType
 
     // MARK: Immutable
 
@@ -32,12 +32,12 @@ class AppCoordinator: NSObject, Coordinatable {
 
     init(window: AppWindow?,
          application: AppApplication,
-         networkAPI: NetworkAPI,
-         storeManager: StoreManager,
+         networkKit: NetworkKitType,
+         storeManager: StoreManagerType,
          dismissable: CoordinatorDismissable? = nil) {
         self.window = window
         self.application = application
-        self.networkAPI = networkAPI
+        self.networkKit = networkKit
         self.storeManager = storeManager
         self.dismissable = dismissable
         super.init()
@@ -68,7 +68,7 @@ class AppCoordinator: NSObject, Coordinatable {
     // MARK: - Transitions
 
     private func showHome() {
-        let viewModel = HomeViewModel(networkAPI: networkAPI, storeManager: storeManager)
+        let viewModel = HomeViewModel(networkKit: networkKit, storeManager: storeManager)
         let viewController = UIHostingController(rootView: HomeView(viewModel: viewModel, coordinatorDelegate: self))
         navigationController.viewControllers = [viewController]
         window?.rootViewController = navigationController
@@ -76,19 +76,19 @@ class AppCoordinator: NSObject, Coordinatable {
     }
 
     private func showSearchArtists() {
-        let viewModel = ArtistSearchViewModel(networkAPI: networkAPI)
+        let viewModel = ArtistSearchViewModel(networkKit: networkKit)
         let viewController = UIHostingController(rootView: ArtistSearchView(viewModel: viewModel, coordinatorDelegate: self))
         navigationController.pushViewController(viewController, animated: true)
     }
 
     private func showAlbumList(for artist: Artist) {
-        let viewModel = ArtistAlbumsViewModel(artist: artist, networkAPI: networkAPI, storeManager: storeManager)
+        let viewModel = ArtistAlbumsViewModel(artist: artist, networkKit: networkKit, storeManager: storeManager)
         let viewController = UIHostingController(rootView: ArtistAlbumsView(viewModel: viewModel, coordinatorDelegate: self))
         navigationController.pushViewController(viewController, animated: true)
     }
 
     private func showAlbumInfo(album: Album) {
-        let viewModel = AlbumDetailsViewModel(album: album, storeManager: storeManager, networkAPI: networkAPI)
+        let viewModel = AlbumDetailsViewModel(album: album, storeManager: storeManager, networkKit: networkKit)
         let viewController = UIHostingController(rootView: AlbumDetailsView(viewModel: viewModel))
         navigationController.pushViewController(viewController, animated: true)
     }

@@ -14,7 +14,7 @@ class ArtistSearchViewModel: ObservableObject {
     // MARK: - Properties
     // MARK: Immutable
 
-    private let networkAPI: NetworkAPI
+    private let networkKit: NetworkKitType
 
     // MARK: Mutable
 
@@ -27,8 +27,8 @@ class ArtistSearchViewModel: ObservableObject {
 
     // MARK: - Initializers
 
-    init(networkAPI: NetworkAPI) {
-        self.networkAPI = networkAPI
+    init(networkKit: NetworkKitType) {
+        self.networkKit = networkKit
         start()
     }
 
@@ -37,7 +37,7 @@ class ArtistSearchViewModel: ObservableObject {
     func start() {
         $searchText.debounce(for: 1, scheduler: DispatchQueue.main)
             .filter { !$0.isEmpty }
-            .flatMap { [unowned self] in self.networkAPI.searchArtists(searchKeyword: String($0)) }
+            .flatMap { [unowned self] in self.networkKit.searchArtists(searchKeyword: String($0)) }
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] completion in

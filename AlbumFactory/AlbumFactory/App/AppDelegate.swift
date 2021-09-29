@@ -26,7 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         appCoordinator = AppCoordinator(
             window: window,
             application: dependencyResolver.application,
-            networkAPI: dependencyResolver.networkAPI,
+            networkKit: dependencyResolver.networkKit,
             storeManager: dependencyResolver.storeManager
         )
         appCoordinator.start()

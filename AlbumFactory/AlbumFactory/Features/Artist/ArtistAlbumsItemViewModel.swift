@@ -25,7 +25,7 @@ class ArtistAlbumsItemViewModel: ObservableObject, Identifiable, Equatable {
     // MARK: Immutable
 
     let album: Album
-    let storeManager: StoreManager
+    let storeManager: StoreManagerType
 
     // MARK: Mutable
 
@@ -38,7 +38,7 @@ class ArtistAlbumsItemViewModel: ObservableObject, Identifiable, Equatable {
 
     // MARK: - Initializers
 
-    init(album: Album, storeManager: StoreManager) {
+    init(album: Album, storeManager: StoreManagerType) {
         self.album = album
         self.storeManager = storeManager
         setupObserving()

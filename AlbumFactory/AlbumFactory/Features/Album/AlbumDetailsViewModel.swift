@@ -28,8 +28,8 @@ class AlbumDetailsViewModel: ObservableObject {
     // MARK: - Properties
     // MARK: Immutable
 
-    let storeManager: StoreManager
-    let networkAPI: NetworkAPI
+    let storeManager: StoreManagerType
+    let networkKit: NetworkKitType
 
     // MARK: Mutable
 
@@ -42,10 +42,10 @@ class AlbumDetailsViewModel: ObservableObject {
 
     // MARK: - Initializers
 
-    init(album: Album, storeManager: StoreManager, networkAPI: NetworkAPI) {
+    init(album: Album, storeManager: StoreManagerType, networkKit: NetworkKitType) {
         self.album = album
         self.storeManager = storeManager
-        self.networkAPI = networkAPI
+        self.networkKit = networkKit
         setupObserving()
     }
 
@@ -54,7 +54,7 @@ class AlbumDetailsViewModel: ObservableObject {
     private func setupObserving() {
         handleResponse(album, isNetworkData: false)
 
-        networkAPI.albumDetails(album.mbid)
+        networkKit.albumDetails(album.mbid)
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { completion in

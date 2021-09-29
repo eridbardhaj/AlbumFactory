@@ -50,7 +50,7 @@ struct ArtistSearchView: View {
 
 struct ArtistSearchContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = ArtistSearchViewModel(networkAPI: NetworkAPIMock())
+        let viewModel = ArtistSearchViewModel(networkKit: NetworkKitTypeMock())
         ArtistSearchView(viewModel: viewModel, coordinatorDelegate: nil)
     }
 }

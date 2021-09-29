@@ -6,8 +6,8 @@ class ArtistAlbumsViewModel: ObservableObject {
     // MARK: - Properties
     // MARK: Immutable
 
-    private let networkAPI: NetworkAPI
-    private let storeManager: StoreManager
+    private let networkKit: NetworkKitType
+    private let storeManager: StoreManagerType
 
     // MARK: Mutable
 
@@ -21,10 +21,10 @@ class ArtistAlbumsViewModel: ObservableObject {
     // MARK: - Initializers
 
     init(artist: Artist,
-         networkAPI: NetworkAPI,
-         storeManager: StoreManager) {
+         networkKit: NetworkKitType,
+         storeManager: StoreManagerType) {
         self.artist = artist
-        self.networkAPI = networkAPI
+        self.networkKit = networkKit
         self.storeManager = storeManager
         setupObserving()
     }
@@ -32,7 +32,7 @@ class ArtistAlbumsViewModel: ObservableObject {
     // MARK: - Setups
 
     private func setupObserving() {
-        Publishers.CombineLatest(networkAPI.artistDetails(artist.mbid), networkAPI.artistAlbums(artist.mbid))
+        Publishers.CombineLatest(networkKit.artistDetails(artist.mbid), networkKit.artistAlbums(artist.mbid))
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
             .sink(
