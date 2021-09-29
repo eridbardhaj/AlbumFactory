@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4FF5EFD406B2A785E935BB9C /* Pods_AlbumFactory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30319814A2D8C83770C61FF3 /* Pods_AlbumFactory.framework */; };
 		E808C02027051B0900C5A27E /* StoreManagerTypeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808C01F27051B0900C5A27E /* StoreManagerTypeMock.swift */; };
+		E808C02327051F7300C5A27E /* ImageLoaderTypeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808C02227051F7300C5A27E /* ImageLoaderTypeMock.swift */; };
+		E808C025270521BB00C5A27E /* ImageDownloaderTypeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808C024270521BB00C5A27E /* ImageDownloaderTypeMock.swift */; };
 		E810F2D32704573A00A6E36F /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E810F2D22704573A00A6E36F /* Spacing.swift */; };
 		E810F2D527045BA900A6E36F /* ArtistAlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E810F2D427045BA900A6E36F /* ArtistAlbumsView.swift */; };
 		E810F2D727045BB300A6E36F /* ArtistAlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E810F2D627045BB300A6E36F /* ArtistAlbumsViewModel.swift */; };
@@ -91,6 +93,8 @@
 		30319814A2D8C83770C61FF3 /* Pods_AlbumFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlbumFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B5F3D4DFE26F53CB4D6063 /* Pods-AlbumFactory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlbumFactory.release.xcconfig"; path = "Target Support Files/Pods-AlbumFactory/Pods-AlbumFactory.release.xcconfig"; sourceTree = "<group>"; };
 		E808C01F27051B0900C5A27E /* StoreManagerTypeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManagerTypeMock.swift; sourceTree = "<group>"; };
+		E808C02227051F7300C5A27E /* ImageLoaderTypeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderTypeMock.swift; sourceTree = "<group>"; };
+		E808C024270521BB00C5A27E /* ImageDownloaderTypeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloaderTypeMock.swift; sourceTree = "<group>"; };
 		E810F2D22704573A00A6E36F /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		E810F2D427045BA900A6E36F /* ArtistAlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbumsView.swift; sourceTree = "<group>"; };
 		E810F2D627045BB300A6E36F /* ArtistAlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbumsViewModel.swift; sourceTree = "<group>"; };
@@ -210,6 +214,15 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		E808C02127051F6800C5A27E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E808C02227051F7300C5A27E /* ImageLoaderTypeMock.swift */,
+				E808C024270521BB00C5A27E /* ImageDownloaderTypeMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		E857C31A2703A666004D54DC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				E85C05FA27016A2300F582BA /* ImageLoader.swift */,
+				E808C02127051F6800C5A27E /* Mocks */,
 			);
 			path = Caching;
 			sourceTree = "<group>";
@@ -631,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8FE9712270085580008FA8A /* NetworkKit.swift in Sources */,
+				E808C02327051F7300C5A27E /* ImageLoaderTypeMock.swift in Sources */,
 				E85C05E82701407E00F582BA /* ArtistSearchResponse.swift in Sources */,
 				E85C05F0270149B400F582BA /* HomeView.swift in Sources */,
 				E8FE9714270085580008FA8A /* NetworkAgent.swift in Sources */,
@@ -643,6 +658,7 @@
 				E8FE970526FD4FC40008FA8A /* CollectionViewLayout.swift in Sources */,
 				E8A5482827050654004656E1 /* AppColor.swift in Sources */,
 				E810F2D527045BA900A6E36F /* ArtistAlbumsView.swift in Sources */,
+				E808C025270521BB00C5A27E /* ImageDownloaderTypeMock.swift in Sources */,
 				E8859E502704C57500B156C5 /* PersistedArtist.swift in Sources */,
 				E8D9B4D127047B4900FECFAE /* PersistedAlbum.swift in Sources */,
 				E85C05DB2701195400F582BA /* NetworkRequest.swift in Sources */,
