@@ -28,7 +28,7 @@ public struct Album: Decodable, Equatable, Identifiable {
 
     public let id = UUID()
     public let mbid: String?
-    public let name: String?
+    public let name: String
     public let plays: String?
     public let listeners: String?
     public let visitUrl: String?
@@ -41,7 +41,7 @@ public struct Album: Decodable, Equatable, Identifiable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         mbid = try values.decodeIfPresent(String.self, forKey: .mbid)
-        name = try values.decodeIfPresent(String.self, forKey: .name)
+        name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
         do {
             plays = try values.decode(String.self, forKey: .plays)
         } catch DecodingError.typeMismatch {
@@ -62,7 +62,7 @@ public struct Album: Decodable, Equatable, Identifiable {
     // MARK: - Initializers
 
     public init(mbid: String?,
-                name: String?,
+                name: String,
                 plays: String?,
                 listeners: String?,
                 visitUrl: String?,
@@ -75,5 +75,15 @@ public struct Album: Decodable, Equatable, Identifiable {
         self.visitUrl = visitUrl
         self.imageUrl = imageUrl
         self.tracks = tracks
+    }
+
+    public init(persistedAlbum: PersistedAlbum) {
+        self.mbid = persistedAlbum.mbid
+        self.name = persistedAlbum.name
+        self.plays = persistedAlbum.plays
+        self.listeners = persistedAlbum.listeners
+        self.visitUrl = persistedAlbum.visitUrl
+        self.imageUrl = persistedAlbum.imageUrl
+        self.tracks = persistedAlbum.tracks.map { Track(name: $0.name, duration: $0.duration, visitUrl: $0.visitUrl) }
     }
 }
