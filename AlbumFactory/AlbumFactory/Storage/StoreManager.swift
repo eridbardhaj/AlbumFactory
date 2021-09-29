@@ -4,6 +4,7 @@ import Combine
 
 protocol Storable: AnyObject {
     func storeAlbum(album: Album)
+    func updateAlbumTracks(album: Album)
     func deleteAlbum(album: Album)
 }
 
@@ -30,6 +31,19 @@ class StoreManager: Storable {
 
     // MARK: - Protocol Conformance
     // MARK: Storable
+
+    func updateAlbumTracks(album: Album) {
+        guard let persistedAlbum = results.first(where: { $0.mbid == album.mbid }) else { return }
+        do {
+            try realm.write {
+                persistedAlbum.tracks.append(
+                    objectsIn: album.tracks.map { PersistedTrack(track: $0) }
+                )
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
 
     func storeAlbum(album: Album) {
         let persistedAlbum = PersistedAlbum(album: album)
