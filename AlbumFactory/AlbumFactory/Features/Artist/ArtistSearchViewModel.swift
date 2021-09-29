@@ -6,9 +6,9 @@ class ArtistSearchViewModel: ObservableObject {
 
     // MARK: - Inner Types
 
-    enum ViewState: Equatable {
-        case empty(text: String)
-        case itemViewModels(content: [ArtistSearchItemViewModel])
+    enum ViewState {
+        case empty(text: String, action: (() -> Void)?)
+        case data(itemViewModels: [ArtistSearchItemViewModel])
     }
 
     // MARK: - Properties
@@ -22,7 +22,7 @@ class ArtistSearchViewModel: ObservableObject {
 
     // MARK: Published
 
-    @Published private(set) var viewState: ViewState = .empty(text: "Loading")
+    @Published private(set) var viewState: ViewState = .empty(text: "Search your favourite artists", action: nil)
     @Published var searchText: String = ""
 
     // MARK: - Initializers
@@ -37,13 +37,15 @@ class ArtistSearchViewModel: ObservableObject {
     func start() {
         $searchText.debounce(for: 1, scheduler: DispatchQueue.main)
             .filter { !$0.isEmpty }
-            .flatMap { self.networkAPI.searchArtists(searchKeyword: String($0)) }
+            .flatMap { [unowned self] in self.networkAPI.searchArtists(searchKeyword: String($0)) }
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     switch completion {
                     case .failure(let error):
-                        self?.viewState = ViewState.empty(text: "Network failed")
+                        self?.viewState = ViewState.empty(text: "Network failed") {
+                            self?.start()
+                        }
                         print(error)
                     case .finished:
                         break
@@ -61,6 +63,6 @@ class ArtistSearchViewModel: ObservableObject {
         let itemViewModels = response.artists
             .filter { $0.name != "(null)" && !$0.mbid.isEmpty }
             .map { ArtistSearchItemViewModel(artist: $0) }
-        viewState = ViewState.itemViewModels(content: itemViewModels)
+        viewState = ViewState.data(itemViewModels: itemViewModels)
     }
 }

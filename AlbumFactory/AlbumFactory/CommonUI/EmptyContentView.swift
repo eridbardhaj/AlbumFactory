@@ -18,14 +18,16 @@ struct EmptyContentView: View {
             Text(text)
                 .font(AppFont.subHeading.font)
                 .foregroundColor(AppColor.dark.color)
-            Button(
-                action: { action?() },
-                label: {
-                    Text("Try again")
-                        .font(AppFont.subHeading.font)
-                        .foregroundColor(AppColor.orange.color)
-                }
-            )
+            if action != nil {
+                Button(
+                    action: { action?() },
+                    label: {
+                        Text("Try again")
+                            .font(AppFont.subHeading.font)
+                            .foregroundColor(AppColor.orange.color)
+                    }
+                )
+            }
         }
         .background(AppColor.white.color)
     }

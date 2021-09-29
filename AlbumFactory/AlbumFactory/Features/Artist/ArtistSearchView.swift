@@ -23,17 +23,17 @@ struct ArtistSearchView: View {
 
     var body: some View {
         VStack {
+            SearchBar(placeholder: "Search...", text: $viewModel.searchText)
+                .navigationTitle("Search Artists")
             switch viewModel.viewState {
-            case .empty(let text):
-                EmptyContentView(text: text) {
-                    viewModel.start()
-                }
-            case .data(let content):
-                SearchBar(placeholder: "Search...", text: $viewModel.searchText)
-                    .navigationTitle("Search Artists")
+            case .empty(let text, let action):
+                Spacer()
+                EmptyContentView(text: text, action: action)
+                Spacer()
+            case .data(let itemViewModels):
                 ScrollView {
                     LazyVStack(spacing: Spacing.defaultVertical) {
-                        ForEach(content.itemViewModels) { itemViewModel in
+                        ForEach(itemViewModels) { itemViewModel in
                             ArtistSearchItemView(viewModel: itemViewModel)
                             .onTapGesture {
                                 coordinatorDelegate?.artistSearchViewDidSelectArtist(artist: itemViewModel.artist)
