@@ -8,7 +8,7 @@ class DependencyResolver {
     static let jsonDecoder = JSONDecoder()
     static let agent: Agent = NetworkAgent(networkHandler: networkHandler, jsonDecoder: jsonDecoder)
     static let networkKit: NetworkKitType = NetworkKit(agent: agent)
-    static let application: AppApplication = UIApplication.shared
+    static let application: UIApplicationType = UIApplication.shared
     static let realm = try! Realm()
     static let storeManager: StoreManagerType = StoreManager(realm: realm)
 }

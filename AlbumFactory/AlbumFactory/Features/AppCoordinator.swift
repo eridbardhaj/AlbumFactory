@@ -13,8 +13,8 @@ class AppCoordinator: NSObject, Coordinatable {
     // MARK: - Properties
     // MARK: Injected Dependencies
 
-    private let window: AppWindow?
-    private let application: AppApplication
+    private let window: UIWindowType?
+    private let application: UIApplicationType
     private let networkKit: NetworkKitType
     private let storeManager: StoreManagerType
 
@@ -30,8 +30,8 @@ class AppCoordinator: NSObject, Coordinatable {
 
     // MARK: - Initializers
 
-    init(window: AppWindow?,
-         application: AppApplication,
+    init(window: UIWindowType?,
+         application: UIApplicationType,
          networkKit: NetworkKitType,
          storeManager: StoreManagerType,
          dismissable: CoordinatorDismissable? = nil) {

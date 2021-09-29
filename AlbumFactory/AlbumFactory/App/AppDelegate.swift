@@ -10,7 +10,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     // MARK: Mutable
 
-    var window: AppWindow?
+    var window: UIWindowType?
     var appCoordinator: AppCoordinator!
 
     // MARK: - Protocol Conformance
