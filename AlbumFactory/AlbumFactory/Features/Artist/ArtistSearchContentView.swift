@@ -23,7 +23,7 @@ struct ArtistSearchContentView: View {
 
     var body: some View {
         VStack {
-            SearchBar(searchPlaceholder: "Search...", text: $viewModel.searchText)
+            SearchBar(placeholder: "Search...", text: $viewModel.searchText)
                 .navigationTitle("Search Artists")
             ScrollView {
                 LazyVStack(spacing: Spacing.defaultVertical) {
