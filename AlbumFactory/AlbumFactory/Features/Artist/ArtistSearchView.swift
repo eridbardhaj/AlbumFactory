@@ -23,31 +23,27 @@ struct ArtistSearchView: View {
 
     var body: some View {
         VStack {
-            SearchBar(placeholder: "Search...", text: $viewModel.searchText)
-                .navigationTitle("Search Artists")
-            ScrollView {
-                LazyVStack(spacing: Spacing.defaultVertical) {
-                    ForEach(viewModel.artists) { artist in
-                        HStack(spacing: Spacing.defaultHorizontal) {
-                            AsyncImage(imageURLString: artist.imageUrl)
-                                .frame(width: 60, height: 60)
-                                .padding(.leading, Spacing.defaultHorizontal)
-                            VStack(spacing: Spacing.defaultVertical) {
-                                Text(artist.name)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                Text(String("Plays: \(artist.listeners ?? "N/A")"))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+            switch viewModel.viewState {
+            case .empty(let text):
+                EmptyContentView(text: text) {
+                    viewModel.start()
+                }
+            case .data(let content):
+                SearchBar(placeholder: "Search...", text: $viewModel.searchText)
+                    .navigationTitle("Search Artists")
+                ScrollView {
+                    LazyVStack(spacing: Spacing.defaultVertical) {
+                        ForEach(content.itemViewModels) { itemViewModel in
+                            ArtistSearchItemView(viewModel: itemViewModel)
+                            .onTapGesture {
+                                coordinatorDelegate?.artistSearchViewDidSelectArtist(artist: itemViewModel.artist)
                             }
-                            Spacer()
-                        }
-                        .onTapGesture {
-                            coordinatorDelegate?.artistSearchViewDidSelectArtist(artist: artist)
                         }
                     }
                 }
-            }
 
-            Spacer()
+                Spacer()
+            }
         }
     }
 }
