@@ -16,6 +16,7 @@ class AppCoordinator: NSObject, Coordinatable {
     private let window: AppWindow?
     private let application: AppApplication
     private let networkAPI: NetworkAPI
+    private let storeManager: StoreManager
 
     // MARK: Immutable
 
@@ -32,10 +33,12 @@ class AppCoordinator: NSObject, Coordinatable {
     init(window: AppWindow?,
          application: AppApplication,
          networkAPI: NetworkAPI,
+         storeManager: StoreManager,
          dismissable: CoordinatorDismissable? = nil) {
         self.window = window
         self.application = application
         self.networkAPI = networkAPI
+        self.storeManager = storeManager
         self.dismissable = dismissable
         super.init()
     }
@@ -65,7 +68,7 @@ class AppCoordinator: NSObject, Coordinatable {
     // MARK: - Transitions
 
     private func showHome() {
-        let viewModel = HomeContentViewModel(networkAPI: networkAPI)
+        let viewModel = HomeContentViewModel(networkAPI: networkAPI, storeManager: storeManager)
         let viewController = UIHostingController(rootView: HomeContentView(viewModel: viewModel, coordinatorDelegate: self))
         navigationController.viewControllers = [viewController]
         window?.rootViewController = navigationController
@@ -79,7 +82,7 @@ class AppCoordinator: NSObject, Coordinatable {
     }
 
     private func showAlbumList(for artist: Artist) {
-        let viewModel = ArtistAlbumsContentViewModel(artist: artist, networkAPI: networkAPI)
+        let viewModel = ArtistAlbumsContentViewModel(artist: artist, networkAPI: networkAPI, storeManager: storeManager)
         let viewController = UIHostingController(rootView: ArtistAlbumsContentView(viewModel: viewModel, coordinatorDelegate: self))
         navigationController.pushViewController(viewController, animated: true)
     }

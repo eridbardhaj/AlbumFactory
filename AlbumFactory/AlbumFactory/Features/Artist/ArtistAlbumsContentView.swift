@@ -24,13 +24,17 @@ struct ArtistAlbumsContentView: View {
     var body: some View {
         Group {
             CollectionView(
-                items: $viewModel.albums,
-                tapAction: { album, _ in
-                    coordinatorDelegate?.artistAlbumsContentViewDidTapAlbum(album: album)
+                items: $viewModel.itemViewModels,
+                tapAction: { itemViewModel, _ in
+                    coordinatorDelegate?.artistAlbumsContentViewDidTapAlbum(album: itemViewModel.album)
                 },
-                itemBuilder: { album, _ in
-                    let viewModel = HomeContentItemViewModel(album: album)
-                    HomeContentItemView(viewModel: viewModel)
+                itemBuilder: { itemViewModel, _ in
+                    ArtistAlbumsContentItemView(
+                        viewModel: itemViewModel,
+                        likeAction: {
+                            viewModel.tappedLikeButton(on: itemViewModel)
+                        }
+                    )
                 }
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -42,7 +46,7 @@ struct ArtistAlbumsContentView: View {
 struct ArtistAlbumsContentView_Previews: PreviewProvider {
     static var previews: some View {
         let artist = Artist(id: UUID().uuidString, mbid: UUID().uuidString, name: "Eminem", listeners: "123212", visitUrl: nil, imageUrl: nil)
-        let viewModel = ArtistAlbumsContentViewModel(artist: artist, networkAPI: NetworkAPIMock())
+        let viewModel = ArtistAlbumsContentViewModel(artist: artist, networkAPI: NetworkAPIMock(), storeManager: StoreManager())
         ArtistAlbumsContentView(viewModel: viewModel, coordinatorDelegate: nil)
     }
 }

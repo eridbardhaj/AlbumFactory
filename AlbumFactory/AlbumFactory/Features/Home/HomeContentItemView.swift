@@ -59,7 +59,7 @@ struct HomeContentItemView_Previews: PreviewProvider {
             Track(name: "Not Afraid", duration: 200, visitUrl: nil),
             Track(name: "Space Bound", duration: 192, visitUrl: nil),
         ]
-        let album = Album(mbid: "123-123", name: "Recovery", plays: "111232", listeners: "200123", visitUrl: nil, imageUrl: "https://lastfm.freetls.fastly.net/i/u/174s/be7d9be5645e1a7d64f51579401e48c7.png", tracks: tracks)
+        let album = Album(id: UUID(), mbid: "123-123", name: "Recovery", plays: "111232", listeners: "200123", visitUrl: nil, imageUrl: "https://lastfm.freetls.fastly.net/i/u/174s/be7d9be5645e1a7d64f51579401e48c7.png", tracks: tracks)
         let viewModel = HomeContentItemViewModel(album: album)
         HomeContentItemView(viewModel: viewModel)
     }
