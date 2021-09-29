@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import RealmSwift
 
 class HomeContentViewModel: ObservableObject {
 
@@ -7,6 +8,7 @@ class HomeContentViewModel: ObservableObject {
     // MARK: Immutable
 
     private let networkAPI: NetworkAPI
+    private let storeManager: StoreManager
 
     // MARK: Mutable
 
@@ -15,45 +17,37 @@ class HomeContentViewModel: ObservableObject {
     // MARK: Published
 
     @Published var itemViewModels = [HomeContentItemViewModel]()
-    @Published var albums = [Album]()
-
+    
     // MARK: - Initializers
 
-    init(networkAPI: NetworkAPI) {
+    init(networkAPI: NetworkAPI, storeManager: StoreManager) {
         self.networkAPI = networkAPI
+        self.storeManager = storeManager
         setupObserving()
     }
 
     // MARK: - Setups
 
     private func setupObserving() {
-        networkAPI.artistAlbums("b95ce3ff-3d05-4e87-9e01-c97b66af13d4")
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { completion in
-                    switch completion {
-                    case .failure(let error):
-                        print(error)
-                    case .finished:
-                        break
-                    }
-                },
-                receiveValue: { [weak self] in self?.handleResponse($0) }
-            )
+        storeManager.results.objectWillChange
+            .sink(receiveValue: { [weak self] _ in
+                self?.handleResponse()
+            })
             .store(in: &cancellables)
     }
 
     // MARK: - Actions
 
     func tappedLikeButton(on itemViewModel: HomeContentItemViewModel) {
-        itemViewModel.tappedLikeButton()
+        storeManager.deleteAlbum(album: itemViewModel.album)
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
     }
 
     // MARK: - Helpers
     // MARK: Handlers
 
-    private func handleResponse(_ response: ArtistAlbumsResponse) {
-        itemViewModels = response.albums
+    private func handleResponse() {
+        itemViewModels = storeManager.results.map { Album(persistedAlbum: $0) }
             .filter { $0.name != "(null)" && $0.mbid != nil }
             .map { HomeContentItemViewModel(album: $0) }
     }

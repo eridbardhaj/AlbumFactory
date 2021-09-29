@@ -8,6 +8,7 @@ class ArtistAlbumsContentViewModel: ObservableObject {
 
     private let networkAPI: NetworkAPI
     private let artist: Artist
+    private let storeManager: StoreManager
 
     // MARK: Mutable
 
@@ -15,14 +16,16 @@ class ArtistAlbumsContentViewModel: ObservableObject {
 
     // MARK: Published
 
-    @Published var albums = [Album]()
+    @Published var itemViewModels = [ArtistAlbumsContentItemViewModel]()
 
     // MARK: - Initializers
 
     init(artist: Artist,
-         networkAPI: NetworkAPI) {
+         networkAPI: NetworkAPI,
+         storeManager: StoreManager) {
         self.artist = artist
         self.networkAPI = networkAPI
+        self.storeManager = storeManager
         setupObserving()
     }
 
@@ -47,10 +50,50 @@ class ArtistAlbumsContentViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
+    // MARK: - Actions
+
+    func tappedLikeButton(on itemViewModel: ArtistAlbumsContentItemViewModel) {
+        if storeManager.isAlbumStored(album: itemViewModel.album) {
+            storeManager.deleteAlbum(album: itemViewModel.album)
+                .sink(
+                    receiveCompletion: { completed in
+                        switch completed {
+                        case .failure(let error):
+                            print(error)
+                        case .finished:
+                            itemViewModel.likedAlbum.toggle()
+                            break
+                        }
+                    },
+                    receiveValue: { _ in }
+                )
+                .store(in: &cancellables)
+        } else {
+            storeManager.storeAlbum(album: itemViewModel.album)
+                .sink(
+                    receiveCompletion: { completed in
+                        switch completed {
+                        case .failure(let error):
+                            print(error)
+                        case .finished:
+                            itemViewModel.likedAlbum.toggle()
+                            break
+                        }
+                    },
+                    receiveValue: { _ in }
+                )
+                .store(in: &cancellables)
+        }
+
+//        itemViewModel.tappedLikeButton()
+    }
+
     // MARK: - Helpers
     // MARK: Handlers
 
     private func handleResponse(_ response: ArtistAlbumsResponse) {
-        albums = response.albums.filter { $0.name != "(null)" }
+        itemViewModels = response.albums
+            .filter { $0.name != "(null)" && $0.mbid != nil }
+            .map { ArtistAlbumsContentItemViewModel(album: $0, storeManager: storeManager) }
     }
 }
