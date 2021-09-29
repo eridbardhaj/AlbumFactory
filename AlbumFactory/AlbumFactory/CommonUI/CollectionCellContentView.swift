@@ -22,14 +22,6 @@ struct CollectionCellContentView<Item, ItemContent>: View where ItemContent: Vie
                 }
                 .zIndex(2)
                 .allowsHitTesting(true)
-
-                Group {
-                    Rectangle()
-                        .foregroundColor(Color.clear)
-                }
-                .background(Color(UIColor.systemBackground))
-                .allowsHitTesting(true)
-                .zIndex(1)
                 .onTapGesture {
                     tapAction?(item, itemMetrics)
                 }
