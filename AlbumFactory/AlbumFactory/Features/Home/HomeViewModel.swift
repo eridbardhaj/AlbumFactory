@@ -2,13 +2,13 @@ import Foundation
 import Combine
 import RealmSwift
 
-class HomeContentViewModel: ObservableObject {
+class HomeViewModel: ObservableObject {
 
     // MARK: - Properties
     // MARK: Immutable
 
-    private let networkAPI: NetworkAPI
-    private let storeManager: StoreManager
+    private let networkKit: NetworkKitType
+    private let storeManager: StoreManagerType
 
     // MARK: Mutable
 
@@ -16,12 +16,12 @@ class HomeContentViewModel: ObservableObject {
 
     // MARK: Published
 
-    @Published var itemViewModels = [HomeContentItemViewModel]()
+    @Published var itemViewModels = [HomeItemViewModel]()
     
     // MARK: - Initializers
 
-    init(networkAPI: NetworkAPI, storeManager: StoreManager) {
-        self.networkAPI = networkAPI
+    init(networkKit: NetworkKitType, storeManager: StoreManagerType) {
+        self.networkKit = networkKit
         self.storeManager = storeManager
         setupObserving()
     }
@@ -38,9 +38,8 @@ class HomeContentViewModel: ObservableObject {
 
     // MARK: - Actions
 
-    func tappedLikeButton(on itemViewModel: HomeContentItemViewModel) {
+    func tappedLikeButton(on itemViewModel: HomeItemViewModel) {
         storeManager.deleteAlbum(album: itemViewModel.album)
-            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
     }
 
     // MARK: - Helpers
@@ -48,7 +47,7 @@ class HomeContentViewModel: ObservableObject {
 
     private func handleResponse() {
         itemViewModels = storeManager.results.map { Album(persistedAlbum: $0) }
-            .filter { $0.name != "(null)" && $0.mbid != nil }
-            .map { HomeContentItemViewModel(album: $0) }
+        .filter { $0.name != "(null)" && !$0.mbid.isEmpty }
+            .map { HomeItemViewModel(album: $0) }
     }
 }

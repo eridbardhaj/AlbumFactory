@@ -13,10 +13,10 @@ class AppCoordinator: NSObject, Coordinatable {
     // MARK: - Properties
     // MARK: Injected Dependencies
 
-    private let window: AppWindow?
-    private let application: AppApplication
-    private let networkAPI: NetworkAPI
-    private let storeManager: StoreManager
+    private let window: UIWindowType?
+    private let application: UIApplicationType
+    private let networkKit: NetworkKitType
+    private let storeManager: StoreManagerType
 
     // MARK: Immutable
 
@@ -30,14 +30,14 @@ class AppCoordinator: NSObject, Coordinatable {
 
     // MARK: - Initializers
 
-    init(window: AppWindow?,
-         application: AppApplication,
-         networkAPI: NetworkAPI,
-         storeManager: StoreManager,
+    init(window: UIWindowType?,
+         application: UIApplicationType,
+         networkKit: NetworkKitType,
+         storeManager: StoreManagerType,
          dismissable: CoordinatorDismissable? = nil) {
         self.window = window
         self.application = application
-        self.networkAPI = networkAPI
+        self.networkKit = networkKit
         self.storeManager = storeManager
         self.dismissable = dismissable
         super.init()
@@ -68,26 +68,30 @@ class AppCoordinator: NSObject, Coordinatable {
     // MARK: - Transitions
 
     private func showHome() {
-        let viewModel = HomeContentViewModel(networkAPI: networkAPI, storeManager: storeManager)
-        let viewController = UIHostingController(rootView: HomeContentView(viewModel: viewModel, coordinatorDelegate: self))
+        let viewModel = HomeViewModel(networkKit: networkKit, storeManager: storeManager)
+        let viewController = UIHostingController(rootView: HomeView(viewModel: viewModel, coordinatorDelegate: self))
         navigationController.viewControllers = [viewController]
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
     private func showSearchArtists() {
-        let viewModel = ArtistSearchContentViewModel(networkAPI: networkAPI)
-        let viewController = UIHostingController(rootView: ArtistSearchContentView(viewModel: viewModel, coordinatorDelegate: self))
+        let viewModel = ArtistSearchViewModel(networkKit: networkKit)
+        let viewController = UIHostingController(rootView: ArtistSearchView(viewModel: viewModel, coordinatorDelegate: self))
         navigationController.pushViewController(viewController, animated: true)
     }
 
     private func showAlbumList(for artist: Artist) {
-        let viewModel = ArtistAlbumsContentViewModel(artist: artist, networkAPI: networkAPI, storeManager: storeManager)
-        let viewController = UIHostingController(rootView: ArtistAlbumsContentView(viewModel: viewModel, coordinatorDelegate: self))
+        let viewModel = ArtistAlbumsViewModel(artist: artist, networkKit: networkKit, storeManager: storeManager)
+        let viewController = UIHostingController(rootView: ArtistAlbumsView(viewModel: viewModel, coordinatorDelegate: self))
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    private func showAlbumInfo(album: Album) {}
+    private func showAlbumInfo(album: Album) {
+        let viewModel = AlbumDetailsViewModel(album: album, storeManager: storeManager, networkKit: networkKit)
+        let viewController = UIHostingController(rootView: AlbumDetailsView(viewModel: viewModel))
+        navigationController.pushViewController(viewController, animated: true)
+    }
 
     // MARK: - Helpers
 
@@ -96,24 +100,24 @@ class AppCoordinator: NSObject, Coordinatable {
     }
 }
 
-extension AppCoordinator: HomeContentViewDelegate {
-    func homeContentViewDidTapAlbum(album: Album) {
+extension AppCoordinator: HomeViewDelegate {
+    func homeViewDidTapAlbum(album: Album) {
         coordinate(to: AppStep.albumInfo(album: album))
     }
 
-    func homeContentViewDidTapSearchButton() {
+    func homeViewDidTapSearchButton() {
         coordinate(to: AppStep.search)
     }
 }
 
-extension AppCoordinator: ArtistSearchContentViewDelegate {
-    func artistSearchContentViewDidSelectArtist(artist: Artist) {
+extension AppCoordinator: ArtistSearchViewDelegate {
+    func artistSearchViewDidSelectArtist(artist: Artist) {
         coordinate(to: AppStep.albumList(artist: artist))
     }
 }
 
-extension AppCoordinator: ArtistAlbumsContentViewDelegate {
-    func artistAlbumsContentViewDidTapAlbum(album: Album) {
+extension AppCoordinator: ArtistAlbumsViewDelegate {
+    func artistAlbumsViewDidTapAlbum(album: Album) {
         coordinate(to: AppStep.albumInfo(album: album))
     }
 }

@@ -10,6 +10,7 @@ public struct ImageObject: Decodable {
         case large
         case extraLarge = "extralarge"
         case mega
+        case empty      = ""
     }
 
     enum CodingKeys: String, CodingKey {

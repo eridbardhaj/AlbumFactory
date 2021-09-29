@@ -1,17 +1,38 @@
 import AlamofireImage
+import Alamofire
 import SwiftUI
 import Combine
 
-class ImageLoader {
+protocol ImageLoaderType {
+    func image(for url: URL) -> AnyPublisher<UIImage?, Never>
+    func image(for urlString: String?) -> AnyPublisher<UIImage?, Never>
+}
+
+protocol ImageDownloaderType {
+    func download(_ urlRequest: URLRequestConvertible,
+                  cacheKey: String?,
+                  receiptID: String,
+                  serializer: ImageResponseSerializer?,
+                  filter: ImageFilter?,
+                  progress: ImageDownloader.ProgressHandler?,
+                  progressQueue: DispatchQueue,
+                  completion: ImageDownloader.CompletionHandler?)
+    -> RequestReceipt?
+}
+
+extension ImageDownloader: ImageDownloaderType {}
+
+
+class ImageLoader: ImageLoaderType {
 
     // MARK: - Properties
     // MARK: Injected
 
-    private let imageDownloader: ImageDownloader
+    private let imageDownloader: ImageDownloaderType
 
     // MARK: - Initializers
 
-    init(imageDownloader: ImageDownloader = ImageDownloader(
+    init(imageDownloader: ImageDownloaderType = ImageDownloader(
         configuration: ImageDownloader.defaultURLSessionConfiguration(),
         downloadPrioritization: .fifo,
         maximumActiveDownloads: 4,
@@ -25,7 +46,7 @@ class ImageLoader {
     func image(for url: URL) -> AnyPublisher<UIImage?, Never> {
         Future { [weak self] subscriber in
             let urlRequest = URLRequest(url: url)
-            self?.imageDownloader.download(urlRequest, completion: { response in
+            _ = self?.imageDownloader.download(urlRequest, cacheKey: nil, receiptID: UUID().uuidString, serializer: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, completion: { response in
                 if case .success(let image) = response.result {
                     subscriber(.success(image))
                 }

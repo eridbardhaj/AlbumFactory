@@ -2,12 +2,12 @@ import Foundation
 import Combine
 import SwiftUI
 
-class HomeContentItemViewModel: ObservableObject, Identifiable, Equatable {
+class HomeItemViewModel: ObservableObject, Identifiable, Equatable {
 
     // MARK: - Inner Types
 
     enum ViewState: Equatable {
-        struct HomeContentItemContent: Equatable {
+        struct HomeItemContent: Equatable {
             let name: String
             let imageUrlString: String?
             let isLiked: Bool
@@ -18,7 +18,7 @@ class HomeContentItemViewModel: ObservableObject, Identifiable, Equatable {
         }
 
         case loading
-        case dataLoaded(content: HomeContentItemContent)
+        case dataLoaded(content: HomeItemContent)
     }
 
     // MARK: - Properties
@@ -45,7 +45,7 @@ class HomeContentItemViewModel: ObservableObject, Identifiable, Equatable {
 
     private func setupObserving() {
         viewState = ViewState.dataLoaded(
-            content: ViewState.HomeContentItemContent(
+            content: ViewState.HomeItemContent(
                 name: album.name,
                 imageUrlString: album.imageUrl,
                 isLiked: true
@@ -56,7 +56,7 @@ class HomeContentItemViewModel: ObservableObject, Identifiable, Equatable {
     // MARK: - Protocol Conformance
     // MARK: Equatable
 
-    static func == (lhs: HomeContentItemViewModel, rhs: HomeContentItemViewModel) -> Bool {
+    static func == (lhs: HomeItemViewModel, rhs: HomeItemViewModel) -> Bool {
         lhs.album == rhs.album &&
         lhs.viewState == rhs.viewState
     }

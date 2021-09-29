@@ -1,12 +1,13 @@
 import Foundation
 import Combine
 
-protocol NetworkAPI {
+protocol NetworkKitType {
     func run<Response: Decodable>(request: URLRequest) -> AnyPublisher<Response, Error>
 
     func albumDetails(_ albumId: String) -> AnyPublisher<AlbumNetworkRequest.Details.ResponseType, Error>
     func artistAlbums(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Albums.ResponseType, Error>
     func searchArtists(searchKeyword search: String) -> AnyPublisher<ArtistNetworkRequest.Search.ResponseType, Error>
+    func artistDetails(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Details.ResponseType, Error>
 }
 
 enum NetworkKitError: Error {
@@ -14,7 +15,7 @@ enum NetworkKitError: Error {
     case unexpected(code: Int)
 }
 
-class NetworkKit: NetworkAPI {
+class NetworkKit: NetworkKitType {
     
     // MARK: - Properties
     // MARK: Injected
@@ -46,6 +47,10 @@ class NetworkKit: NetworkAPI {
 
     func searchArtists(searchKeyword search: String) -> AnyPublisher<ArtistNetworkRequest.Search.ResponseType, Error> {
         run(request: ArtistNetworkRequest.Search(textQuery: search).urlRequest)
+    }
+
+    func artistDetails(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Details.ResponseType, Error> {
+        run(request: ArtistNetworkRequest.Details(artistId: artistId).urlRequest)
     }
 }
 

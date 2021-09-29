@@ -10,7 +10,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     // MARK: Mutable
 
-    var window: AppWindow?
+    var window: UIWindowType?
     var appCoordinator: AppCoordinator!
 
     // MARK: - Protocol Conformance
@@ -26,7 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         appCoordinator = AppCoordinator(
             window: window,
             application: dependencyResolver.application,
-            networkAPI: dependencyResolver.networkAPI,
+            networkKit: dependencyResolver.networkKit,
             storeManager: dependencyResolver.storeManager
         )
         appCoordinator.start()

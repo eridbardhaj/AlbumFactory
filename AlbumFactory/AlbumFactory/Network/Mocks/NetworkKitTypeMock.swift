@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class NetworkAPIMock: NetworkKit {
+class NetworkKitTypeMock: NetworkKit {
 
     init() {
         super.init(agent: DependencyResolver.agent)
@@ -21,6 +21,10 @@ class NetworkAPIMock: NetworkKit {
         run(request: urlRequest(for: .artistSearch))
     }
 
+    override func artistDetails(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Details.ResponseType, Error> {
+        run(request: urlRequest(for: .artistDetails))
+    }
+
     func urlRequest(for resource: NetworkResource) -> URLRequest {
         var jsonFilename: String
         switch resource {
@@ -30,6 +34,8 @@ class NetworkAPIMock: NetworkKit {
             jsonFilename = "artist_albums"
         case .albumDetails:
             jsonFilename = "album_details"
+        case .artistDetails:
+            jsonFilename = "artist_details"
         }
 
         let url = Bundle.main.url(forResource: jsonFilename, withExtension: "json")!

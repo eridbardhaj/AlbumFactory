@@ -15,12 +15,12 @@ class NetworkAgent: Agent {
     // MARK: - Properties
     // MARK: Injected
     
-    private let networkHandler: NetworkHandling
+    private let networkHandler: NetworkHandlerType
     private let jsonDecoder: JSONDecoder
     
     // MARK: - Initializers
     
-    init(networkHandler: NetworkHandling,
+    init(networkHandler: NetworkHandlerType,
          jsonDecoder: JSONDecoder) {
         self.networkHandler = networkHandler
         self.jsonDecoder = jsonDecoder

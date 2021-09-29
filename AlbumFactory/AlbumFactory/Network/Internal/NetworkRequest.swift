@@ -3,6 +3,7 @@ import Foundation
 enum NetworkResource: String {
     case artistSearch = "artist.search"
     case artistAlbums = "artist.gettopalbums"
+    case artistDetails = "artist.getinfo"
     case albumDetails = "album.getinfo"
 }
 

@@ -1,8 +1,8 @@
 import UIKit
 
-public protocol AppApplication: AnyObject {
+public protocol UIApplicationType: AnyObject {
     var delegate: UIApplicationDelegate? { get }
     var keyWindow: UIWindow? { get }
 }
 
-extension UIApplication: AppApplication {}
+extension UIApplication: UIApplicationType {}

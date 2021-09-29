@@ -2,11 +2,11 @@ import Foundation
 import Combine
 import Alamofire
 
-protocol NetworkHandling {
+protocol NetworkHandlerType {
     func dataTaskPublisher(for request: URLRequest) -> DataResponsePublisher<Data>
 }
 
-class NetworkHandler: NetworkHandling {
+class NetworkHandler: NetworkHandlerType {
 
     // MARK: - Properties
     // MARK: Injected
@@ -20,7 +20,7 @@ class NetworkHandler: NetworkHandling {
     }
 
     // MARK: - Protocol Conformance
-    // MARK: NetworkHandling
+    // MARK: NetworkHandlerType
 
     func dataTaskPublisher(for request: URLRequest) -> DataResponsePublisher<Data> {
         session.request(request)
