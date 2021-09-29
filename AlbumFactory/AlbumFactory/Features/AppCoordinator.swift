@@ -78,7 +78,11 @@ class AppCoordinator: NSObject, Coordinatable {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    private func showAlbumList(for artist: Artist) {}
+    private func showAlbumList(for artist: Artist) {
+        let viewModel = ArtistAlbumsContentViewModel(artist: artist, networkAPI: networkAPI)
+        let viewController = UIHostingController(rootView: ArtistAlbumsContentView(viewModel: viewModel, coordinatorDelegate: self))
+        navigationController.pushViewController(viewController, animated: true)
+    }
 
     private func showAlbumInfo(album: Album) {}
 
@@ -102,5 +106,11 @@ extension AppCoordinator: HomeContentViewDelegate {
 extension AppCoordinator: ArtistSearchContentViewDelegate {
     func artistSearchContentViewDidSelectArtist(artist: Artist) {
         coordinate(to: AppStep.albumList(artist: artist))
+    }
+}
+
+extension AppCoordinator: ArtistAlbumsContentViewDelegate {
+    func artistAlbumsContentViewDidTapAlbum(album: Album) {
+        coordinate(to: AppStep.albumInfo(album: album))
     }
 }
