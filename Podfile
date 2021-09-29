@@ -7,4 +7,5 @@ project 'AlbumFactory/AlbumFactory.xcodeproj'
 target 'AlbumFactory' do
   pod 'Alamofire', '~> 5.4'
   pod 'AlamofireImage', '~> 4.1'
+  pod 'RealmSwift', '~> 10'
 end
