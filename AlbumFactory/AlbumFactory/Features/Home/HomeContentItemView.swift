@@ -3,31 +3,49 @@ import SwiftUI
 struct HomeContentItemView: View {
 
     // MARK: - Properties
+    // MARK: Immutable
+
+    let likeAction: (() -> Void)?
+
     // MARK: Mutable
 
     @ObservedObject private var viewModel: HomeContentItemViewModel
 
     // MARK: - Initializers
 
-    init(viewModel: HomeContentItemViewModel) {
+    init(viewModel: HomeContentItemViewModel, likeAction: (() -> Void)? = nil) {
         self.viewModel = viewModel
+        self.likeAction = likeAction
     }
 
     // MARK: - View Configuration
 
     var body: some View {
-        Group {
+        ZStack {
             switch viewModel.viewState {
             case .loading:
                 ProgressView("Loading")
             case.dataLoaded(let content):
                 AsyncImage(imageURLString: content.imageUrlString)
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: Spacing.defaultVertical) {
                     Spacer()
-                    Text(content.name)
-                        .foregroundColor(Color.white)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.black.opacity(0.4))
+                    HStack(alignment: .bottom) {
+                        Text(content.name)
+                            .foregroundColor(Color.white)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(Spacing.defaultEdgeInsets)
+
+                        Button(action: {
+                            likeAction?()
+                            print("Tapped Action")
+                        }) {
+                            Image(systemName: content.systemIconName)
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(Color.red)
+                                .padding(Spacing.defaultEdgeInsets)
+                        }
+                    }.background(Color.black.opacity(0.6))
                 }
             }
         }

@@ -14,6 +14,7 @@ class HomeContentViewModel: ObservableObject {
 
     // MARK: Published
 
+    @Published var itemViewModels = [HomeContentItemViewModel]()
     @Published var albums = [Album]()
 
     // MARK: - Initializers
@@ -42,10 +43,18 @@ class HomeContentViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
+    // MARK: - Actions
+
+    func tappedLikeButton(on itemViewModel: HomeContentItemViewModel) {
+        itemViewModel.tappedLikeButton()
+    }
+
     // MARK: - Helpers
     // MARK: Handlers
 
     private func handleResponse(_ response: ArtistAlbumsResponse) {
-        albums = response.albums.filter { $0.name != "(null)" }
+        itemViewModels = response.albums
+            .filter { $0.name != "(null)" && $0.mbid != nil }
+            .map { HomeContentItemViewModel(album: $0) }
     }
 }

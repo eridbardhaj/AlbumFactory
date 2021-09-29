@@ -5,18 +5,12 @@ struct CollectionCellContentView<Item, ItemContent>: View where ItemContent: Vie
 
     private let itemBuilder: (Item, GeometryProxy) -> ItemContent
     private let tapAction: ((Item, GeometryProxy) -> Void)?
-    private let longPressAction: ((Item, GeometryProxy) -> Void)?
-    private let pressAction: ((Item, Bool) -> Void)?
 
     init(item: Item,
          tapAction: ((Item, GeometryProxy) -> Void)? = nil,
-         longPressAction: ((Item, GeometryProxy) -> Void)? = nil,
-         pressAction: ((Item, Bool) -> Void)? = nil,
          @ViewBuilder itemBuilder: @escaping (Item, GeometryProxy) -> ItemContent) {
         self.item = item
         self.tapAction = tapAction
-        self.longPressAction = longPressAction
-        self.pressAction = pressAction
         self.itemBuilder = itemBuilder
     }
 
@@ -27,7 +21,7 @@ struct CollectionCellContentView<Item, ItemContent>: View where ItemContent: Vie
                     itemBuilder(item, itemMetrics)
                 }
                 .zIndex(2)
-                .allowsHitTesting(false)
+                .allowsHitTesting(true)
 
                 Group {
                     Rectangle()
@@ -38,11 +32,6 @@ struct CollectionCellContentView<Item, ItemContent>: View where ItemContent: Vie
                 .zIndex(1)
                 .onTapGesture {
                     tapAction?(item, itemMetrics)
-                }
-                .onLongPressGesture(minimumDuration: 0.25, maximumDistance: 10, pressing: { pressing in
-                    pressAction?(item, pressing)
-                }) {
-                    longPressAction?(item, itemMetrics)
                 }
             }
         }

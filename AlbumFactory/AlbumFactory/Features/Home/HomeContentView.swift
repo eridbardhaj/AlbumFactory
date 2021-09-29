@@ -25,13 +25,17 @@ struct HomeContentView: View {
     var body: some View {
         Group {
             CollectionView(
-                items: $viewModel.albums,
-                tapAction: { album, _ in
-                    coordinatorDelegate?.homeContentViewDidTapAlbum(album: album)
+                items: $viewModel.itemViewModels,
+                tapAction: { itemViewModel, _ in
+                    coordinatorDelegate?.homeContentViewDidTapAlbum(album: itemViewModel.album)
                 },
-                itemBuilder: { album, _ in
-                    let viewModel = HomeContentItemViewModel(album: album)
-                    HomeContentItemView(viewModel: viewModel)
+                itemBuilder: { itemViewModel, _ in
+                    HomeContentItemView(
+                        viewModel: itemViewModel,
+                        likeAction: {
+                            viewModel.tappedLikeButton(on: itemViewModel)
+                        }
+                    )
                 }
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)
