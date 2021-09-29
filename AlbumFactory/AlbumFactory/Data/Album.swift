@@ -11,7 +11,6 @@ public struct Album: Decodable, Equatable, Identifiable {
         case plays      = "playcount"
         case listeners
         case artist
-        case visitUrl   = "url"
         case images     = "image"
         case image      = "#text"
         case tracks
@@ -27,52 +26,49 @@ public struct Album: Decodable, Equatable, Identifiable {
     // MARK: Immutable
 
     public let id = UUID()
-    public let mbid: String?
+    public let mbid: String
     public let name: String
     public let plays: String?
     public let listeners: String?
-    public let visitUrl: String?
     public let imageUrl: String?
-    public let tracks: [Track]
+    public var artist: Artist?
+    public var tracks = [Track]()
 
     // MARK: - Protocol Conformance
     // MARK: Codable
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        mbid = try values.decodeIfPresent(String.self, forKey: .mbid)
+        mbid = try values.decodeIfPresent(String.self, forKey: .mbid) ?? ""
         name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+
         do {
             plays = try values.decode(String.self, forKey: .plays)
         } catch DecodingError.typeMismatch {
             plays = String(try values.decodeIfPresent(Int.self, forKey: .plays) ?? -1)
         }
         listeners = try values.decodeIfPresent(String.self, forKey: .listeners)
-        visitUrl = try values.decodeIfPresent(String.self, forKey: .visitUrl)
 
         let imageObjects = try values.decode([ImageObject].self, forKey: .images)
         imageUrl = imageObjects
             .first { $0.size == .extraLarge }
             .map { $0.imageURLString }
-
-        let tracksContainer = try? values.nestedContainer(keyedBy: TrackCodingKeys.self, forKey: .tracks)
-        tracks = try tracksContainer?.decodeIfPresent([Track].self, forKey: .track) ?? []
     }
 
     // MARK: - Initializers
 
-    public init(mbid: String?,
+    public init(mbid: String,
                 name: String,
+                artist: Artist?,
                 plays: String?,
                 listeners: String?,
-                visitUrl: String?,
                 imageUrl: String?,
                 tracks: [Track]) {
         self.mbid = mbid
         self.name = name
+        self.artist = artist
         self.plays = plays
         self.listeners = listeners
-        self.visitUrl = visitUrl
         self.imageUrl = imageUrl
         self.tracks = tracks
     }
@@ -82,8 +78,18 @@ public struct Album: Decodable, Equatable, Identifiable {
         self.name = persistedAlbum.name
         self.plays = persistedAlbum.plays
         self.listeners = persistedAlbum.listeners
-        self.visitUrl = persistedAlbum.visitUrl
         self.imageUrl = persistedAlbum.imageUrl
+        self.artist = persistedAlbum.artist.map { Artist(persistedArtist: $0) }
         self.tracks = persistedAlbum.tracks.map { Track(name: $0.name, duration: $0.duration, visitUrl: $0.visitUrl) }
+    }
+
+    public mutating func updateTracks(tracks: [Track]) -> Self {
+        self.tracks = tracks
+        return self
+    }
+
+    public mutating func updateArtist(artist: Artist) -> Self {
+        self.artist = artist
+        return self
     }
 }

@@ -40,7 +40,6 @@ class HomeViewModel: ObservableObject {
 
     func tappedLikeButton(on itemViewModel: HomeItemViewModel) {
         storeManager.deleteAlbum(album: itemViewModel.album)
-            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
     }
 
     // MARK: - Helpers
@@ -48,7 +47,7 @@ class HomeViewModel: ObservableObject {
 
     private func handleResponse() {
         itemViewModels = storeManager.results.map { Album(persistedAlbum: $0) }
-            .filter { $0.name != "(null)" && $0.mbid != nil }
+        .filter { $0.name != "(null)" && !$0.mbid.isEmpty }
             .map { HomeItemViewModel(album: $0) }
     }
 }
