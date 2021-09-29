@@ -3,8 +3,8 @@ import RealmSwift
 import Combine
 
 protocol Storable: AnyObject {
-    func storeAlbum(album: Album) -> AnyPublisher<Never, Error>
-    func deleteAlbum(album: Album) -> AnyPublisher<Never, Error>
+    func storeAlbum(album: Album)
+    func deleteAlbum(album: Album)
 }
 
 enum StoreManagerError: Error {
@@ -31,58 +31,30 @@ class StoreManager: Storable {
     // MARK: - Protocol Conformance
     // MARK: Storable
 
-    func storeAlbum(album: Album) -> AnyPublisher<Never, Error> {
-        write(object: PersistedAlbum(album: album))
-            .ignoreOutput()
-            .eraseToAnyPublisher()
-    }
-
-    func deleteAlbum(album: Album) -> AnyPublisher<Never, Error> {
-        guard let persistedAlbum = results.first(where: { $0.albumId == album.id }) else {
-            return Fail(error: StoreManagerError.albumNotFound)
-                .eraseToAnyPublisher()
+    func storeAlbum(album: Album) {
+        let persistedAlbum = PersistedAlbum(album: album)
+        do {
+            try realm.write {
+                realm.create(PersistedAlbum.self, value: persistedAlbum, update: .modified)
+            }
+        } catch let error {
+            print(error.localizedDescription)
         }
-
-        return delete(object: persistedAlbum)
-            .ignoreOutput()
-            .eraseToAnyPublisher()
     }
 
-    func albums() -> Results<PersistedAlbum> {
-        realm.objects(PersistedAlbum.self)
+    func deleteAlbum(album: Album) {
+        guard let persistedAlbum = results.first(where: { $0.mbid == album.mbid }) else { return }
+
+        do {
+            try realm.write {
+                realm.delete(persistedAlbum)
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 
     func isAlbumStored(album: Album) -> Bool {
         results.contains(where: { $0.mbid == album.mbid })
-    }
-
-    // MARK: - Internal
-
-    private func write<RealmObject: Object>(object: RealmObject) -> AnyPublisher<RealmObject, Error> {
-        Future { [realm] observer in
-            do {
-                try realm.write {
-                    let storedObject = realm.create(RealmObject.self, value: object, update: .modified)
-                    observer(.success(storedObject))
-                }
-            } catch let error {
-                observer(.failure(error))
-            }
-        }
-        .eraseToAnyPublisher()
-    }
-
-    private func delete<RealmObject: Object & ObjectKeyIdentifiable>(object: RealmObject) -> AnyPublisher<Void, Error> {
-        Future { [realm] observer in
-            do {
-                try realm.write {
-                    realm.delete(object)
-                    observer(.success(()))
-                }
-            } catch let error {
-                observer(.failure(error))
-            }
-        }
-        .eraseToAnyPublisher()
     }
 }
