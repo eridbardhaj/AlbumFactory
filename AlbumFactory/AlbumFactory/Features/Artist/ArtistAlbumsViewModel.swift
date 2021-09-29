@@ -68,7 +68,8 @@ class ArtistAlbumsViewModel: ObservableObject {
         itemViewModels = artistAlbumResponse.albums
             .map {
                 var album = $0
-                return album.updateArtist(artist: artistInfoResponse.artist)
+                album.updateArtist(artist: artistInfoResponse.artist)
+                return album
             }
             .filter { $0.name != "(null)" }
             .map { ArtistAlbumsItemViewModel(album: $0, storeManager: storeManager) }
