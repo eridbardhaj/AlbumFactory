@@ -7,6 +7,7 @@ protocol NetworkAPI {
     func albumDetails(_ albumId: String) -> AnyPublisher<AlbumNetworkRequest.Details.ResponseType, Error>
     func artistAlbums(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Albums.ResponseType, Error>
     func searchArtists(searchKeyword search: String) -> AnyPublisher<ArtistNetworkRequest.Search.ResponseType, Error>
+    func artistDetails(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Details.ResponseType, Error>
 }
 
 enum NetworkKitError: Error {
@@ -46,6 +47,10 @@ class NetworkKit: NetworkAPI {
 
     func searchArtists(searchKeyword search: String) -> AnyPublisher<ArtistNetworkRequest.Search.ResponseType, Error> {
         run(request: ArtistNetworkRequest.Search(textQuery: search).urlRequest)
+    }
+
+    func artistDetails(_ artistId: String) -> AnyPublisher<ArtistNetworkRequest.Details.ResponseType, Error> {
+        run(request: ArtistNetworkRequest.Details(artistId: artistId).urlRequest)
     }
 }
 

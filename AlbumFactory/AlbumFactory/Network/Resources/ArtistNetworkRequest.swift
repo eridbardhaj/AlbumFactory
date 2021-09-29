@@ -48,4 +48,28 @@ enum ArtistNetworkRequest {
         }
         typealias ResponseType = ArtistAlbumsResponse
     }
+
+    struct Details: NetworkRequest {
+
+        // MARK: - Properties
+        // MARK: Immutable
+
+        private let artistId: String
+
+        // MARK: - Initializers
+
+        init(artistId: String) {
+            self.artistId = artistId
+        }
+
+        // MARK: - Protocol Conformance
+        // MARK: NetworkRequest
+
+        var httpMethod: HTTPMethod? { .get }
+        var resource: NetworkResource { .artistDetails }
+        var queryItems: [URLQueryItem] {
+            [ URLQueryItem(name: "mbid", value: artistId) ]
+        }
+        typealias ResponseType = ArtistInfoResponse
+    }
 }
