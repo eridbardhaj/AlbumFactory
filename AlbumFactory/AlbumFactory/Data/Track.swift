@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Track: Decodable, Equatable {
+public struct Track: Decodable, Equatable, Identifiable {
 
     // MARK: - Inner Types
 
@@ -13,6 +13,7 @@ public struct Track: Decodable, Equatable {
     // MARK: - Properties
     // MARK: Immutable
 
+    public let id = UUID()
     public let name: String
     public let duration: Int?
     public let visitUrl: String?

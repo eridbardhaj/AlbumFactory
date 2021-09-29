@@ -53,6 +53,9 @@ public struct Album: Decodable, Equatable, Identifiable {
         imageUrl = imageObjects
             .first { $0.size == .extraLarge }
             .map { $0.imageURLString }
+
+        let tracksContainer = try? values.nestedContainer(keyedBy: TrackCodingKeys.self, forKey: .tracks)
+        tracks = try tracksContainer?.decodeIfPresent([Track].self, forKey: .track) ?? []
     }
 
     // MARK: - Initializers
@@ -83,13 +86,11 @@ public struct Album: Decodable, Equatable, Identifiable {
         self.tracks = persistedAlbum.tracks.map { Track(name: $0.name, duration: $0.duration, visitUrl: $0.visitUrl) }
     }
 
-    public mutating func updateTracks(tracks: [Track]) -> Self {
+    public mutating func updateTracks(tracks: [Track]) {
         self.tracks = tracks
-        return self
     }
 
-    public mutating func updateArtist(artist: Artist) -> Self {
+    public mutating func updateArtist(artist: Artist) {
         self.artist = artist
-        return self
     }
 }

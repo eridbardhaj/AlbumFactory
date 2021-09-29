@@ -87,7 +87,11 @@ class AppCoordinator: NSObject, Coordinatable {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    private func showAlbumInfo(album: Album) {}
+    private func showAlbumInfo(album: Album) {
+        let viewModel = AlbumDetailsViewModel(album: album, storeManager: storeManager, networkAPI: networkAPI)
+        let viewController = UIHostingController(rootView: AlbumDetailsView(viewModel: viewModel))
+        navigationController.pushViewController(viewController, animated: true)
+    }
 
     // MARK: - Helpers
 
