@@ -40,22 +40,16 @@ public struct CollectionView<Item, ItemContent>: View where ItemContent: View, I
 
     private let itemBuilder: (Item, GeometryProxy) -> ItemContent
     private let tapAction: ((Item, GeometryProxy) -> Void)?
-    private let longPressAction: ((Item, GeometryProxy) -> Void)?
-    private let pressAction: ((Item, Bool) -> Void)?
 
     // MARK: - Initializers
 
     public init(items: Binding<[Item]>,
                 layout: CollectionViewLayout = CollectionViewLayout(),
                 tapAction: ((Item, GeometryProxy) -> Void)? = nil,
-                longPressAction: ((Item, GeometryProxy) -> Void)? = nil,
-                pressAction: ((Item, Bool) -> Void)? = nil,
                 @ViewBuilder itemBuilder: @escaping (Item, GeometryProxy) -> ItemContent) {
         self._items = items
         self.itemBuilder = itemBuilder
         self.tapAction = tapAction
-        self.longPressAction = longPressAction
-        self.pressAction = pressAction
         self.layout = layout
     }
 
@@ -105,8 +99,6 @@ public struct CollectionView<Item, ItemContent>: View where ItemContent: View, I
                     CollectionCellContentView(
                         item: item,
                         tapAction: tapAction,
-                        longPressAction: longPressAction,
-                        pressAction: pressAction,
                         itemBuilder: itemBuilder
                     ).frame(
                         width: getColumnWidth(for: metrics.size.width),

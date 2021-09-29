@@ -16,7 +16,7 @@ public class CollectionViewLayout: ObservableObject {
     @Published public var scrollViewInsets: EdgeInsets
 
     public init(rowPadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
-                numberOfColumns: Int = 3,
+                numberOfColumns: Int = 2,
                 itemSpacing: CGFloat = 2,
                 rowHeight: CollectionViewRowHeight = .sameAsItemWidth,
                 scrollViewInsets: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)) {

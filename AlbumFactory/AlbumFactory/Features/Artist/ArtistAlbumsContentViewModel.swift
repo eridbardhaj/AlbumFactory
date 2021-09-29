@@ -1,12 +1,13 @@
 import Foundation
 import Combine
 
-class HomeContentViewModel: ObservableObject {
+class ArtistAlbumsContentViewModel: ObservableObject {
 
     // MARK: - Properties
     // MARK: Immutable
 
     private let networkAPI: NetworkAPI
+    private let artist: Artist
 
     // MARK: Mutable
 
@@ -14,12 +15,13 @@ class HomeContentViewModel: ObservableObject {
 
     // MARK: Published
 
-    @Published var itemViewModels = [HomeContentItemViewModel]()
     @Published var albums = [Album]()
 
     // MARK: - Initializers
 
-    init(networkAPI: NetworkAPI) {
+    init(artist: Artist,
+         networkAPI: NetworkAPI) {
+        self.artist = artist
         self.networkAPI = networkAPI
         setupObserving()
     }
@@ -27,7 +29,9 @@ class HomeContentViewModel: ObservableObject {
     // MARK: - Setups
 
     private func setupObserving() {
-        networkAPI.artistAlbums("b95ce3ff-3d05-4e87-9e01-c97b66af13d4")
+        guard let artistId = artist.mbid else { return }
+
+        networkAPI.artistAlbums(artistId)
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { completion in
@@ -43,18 +47,10 @@ class HomeContentViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    // MARK: - Actions
-
-    func tappedLikeButton(on itemViewModel: HomeContentItemViewModel) {
-        itemViewModel.tappedLikeButton()
-    }
-
     // MARK: - Helpers
     // MARK: Handlers
 
     private func handleResponse(_ response: ArtistAlbumsResponse) {
-        itemViewModels = response.albums
-            .filter { $0.name != "(null)" && $0.mbid != nil }
-            .map { HomeContentItemViewModel(album: $0) }
+        albums = response.albums.filter { $0.name != "(null)" }
     }
 }
