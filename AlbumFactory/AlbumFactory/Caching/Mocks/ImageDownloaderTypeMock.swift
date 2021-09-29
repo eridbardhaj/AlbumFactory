@@ -13,7 +13,7 @@ class ImageDownloaderTypeMock: ImageDownloaderType {
     }
 
     class ReturnValue {
-        var download: RequestReceipt? = nil
+        var downloadResult: Result<Image, AFIError>!
     }
 
     // MARK: - Properties
@@ -27,7 +27,17 @@ class ImageDownloaderTypeMock: ImageDownloaderType {
 
     func download(_ urlRequest: URLRequestConvertible, cacheKey: String?, receiptID: String, serializer: ImageResponseSerializer?, filter: ImageFilter?, progress: ImageDownloader.ProgressHandler?, progressQueue: DispatchQueue, completion: ImageDownloader.CompletionHandler?) -> RequestReceipt? {
         calledCount.download += 1
-        return returnValue.download
+        completion?(
+            AFIDataResponse<Image>(
+                request: nil,
+                response: nil,
+                data: nil,
+                metrics: nil,
+                serializationDuration: 1234,
+                result: returnValue.downloadResult
+            )
+        )
+        return nil
     }
 }
 
