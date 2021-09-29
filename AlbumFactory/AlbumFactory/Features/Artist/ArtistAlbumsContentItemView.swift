@@ -29,6 +29,7 @@ struct ArtistAlbumsContentItemView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Color.black.opacity(0.4))
                 }
+                Image(systemName: content.systemIconName)
             }
         }
     }

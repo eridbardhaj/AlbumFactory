@@ -7,13 +7,18 @@ class ArtistAlbumsContentItemViewModel: ObservableObject {
     // MARK: - Inner Types
 
     enum ViewState {
-        struct HomeContentItemContent {
+        struct ArtistAlbumsItemContent {
             let name: String
             let imageUrlString: String?
+            let isLiked: Bool
+
+            var systemIconName: String {
+                isLiked ? "heart" : "heart.fill"
+            }
         }
 
         case loading
-        case dataLoaded(content: HomeContentItemContent)
+        case dataLoaded(content: ArtistAlbumsItemContent)
     }
 
     // MARK: - Properties
@@ -36,9 +41,10 @@ class ArtistAlbumsContentItemViewModel: ObservableObject {
 
     private func setupObserving() {
         viewState = ViewState.dataLoaded(
-            content: ViewState.HomeContentItemContent(
+            content: ViewState.ArtistAlbumsItemContent(
                 name: album.name ?? "",
-                imageUrlString: album.imageUrl
+                imageUrlString: album.imageUrl,
+                isLiked: false
             )
         )
     }
