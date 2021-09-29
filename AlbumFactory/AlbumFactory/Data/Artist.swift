@@ -5,7 +5,7 @@ public struct Artist: Decodable, Equatable, Identifiable {
     // MARK: - Inner Types
 
     enum CodingKeys: String, CodingKey {
-        case id              = "mbid"
+        case mbid
         case name
         case listeners
         case visitUrl        = "url"
@@ -16,7 +16,8 @@ public struct Artist: Decodable, Equatable, Identifiable {
     // MARK: - Properties
     // MARK: Immutable
 
-    public let id: String
+    public let id = UUID()
+    public let mbid: String?
     public let name: String
     public let listeners: String?
     public let visitUrl: String?
@@ -27,25 +28,26 @@ public struct Artist: Decodable, Equatable, Identifiable {
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decode(String.self, forKey: .id)
+        mbid = try values.decode(String.self, forKey: .mbid)
         name = try values.decode(String.self, forKey: .name)
         listeners = try values.decodeIfPresent(String.self, forKey: .listeners)
         visitUrl = try values.decodeIfPresent(String.self, forKey: .visitUrl)
 
-        var reviewCountContainer = try values.nestedUnkeyedContainer(forKey: .images)
-        let firstReviewCountContainer = try reviewCountContainer.nestedContainer(keyedBy: CodingKeys.self)
-
-        imageUrl = try firstReviewCountContainer.decode(String.self, forKey: .image)
+        let imageObjects = try values.decode([ImageObject].self, forKey: .images)
+        imageUrl = imageObjects
+            .first { $0.size == .extraLarge }
+            .map { $0.imageURLString }
     }
 
     // MARK: - Initializers
 
     public init(id: String,
+                mbid: String?,
                 name: String,
                 listeners: String?,
                 visitUrl: String?,
                 imageUrl: String?) {
-        self.id = id
+        self.mbid = mbid
         self.name = name
         self.listeners = listeners
         self.visitUrl = visitUrl
