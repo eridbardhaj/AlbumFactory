@@ -1,20 +1,20 @@
 import SwiftUI
 
-protocol ArtistAlbumsContentViewDelegate: AnyObject {
-    func artistAlbumsContentViewDidTapAlbum(album: Album)
+protocol ArtistAlbumsViewDelegate: AnyObject {
+    func artistAlbumsViewDidTapAlbum(album: Album)
 }
 
-struct ArtistAlbumsContentView: View {
+struct ArtistAlbumsView: View {
 
     // MARK: - Properties
     // MARK: Mutable
 
-    @ObservedObject private var viewModel: ArtistAlbumsContentViewModel
-    private weak var coordinatorDelegate: ArtistAlbumsContentViewDelegate?
+    @ObservedObject private var viewModel: ArtistAlbumsViewModel
+    private weak var coordinatorDelegate: ArtistAlbumsViewDelegate?
 
     // MARK: - Initializers
 
-    init(viewModel: ArtistAlbumsContentViewModel, coordinatorDelegate: ArtistAlbumsContentViewDelegate?) {
+    init(viewModel: ArtistAlbumsViewModel, coordinatorDelegate: ArtistAlbumsViewDelegate?) {
         self.viewModel = viewModel
         self.coordinatorDelegate = coordinatorDelegate
     }
@@ -26,10 +26,10 @@ struct ArtistAlbumsContentView: View {
             CollectionView(
                 items: $viewModel.itemViewModels,
                 tapAction: { itemViewModel, _ in
-                    coordinatorDelegate?.artistAlbumsContentViewDidTapAlbum(album: itemViewModel.album)
+                    coordinatorDelegate?.artistAlbumsViewDidTapAlbum(album: itemViewModel.album)
                 },
                 itemBuilder: { itemViewModel, _ in
-                    ArtistAlbumsContentItemView(
+                    ArtistAlbumsItemView(
                         viewModel: itemViewModel,
                         likeAction: {
                             viewModel.tappedLikeButton(on: itemViewModel)
@@ -46,7 +46,7 @@ struct ArtistAlbumsContentView: View {
 struct ArtistAlbumsContentView_Previews: PreviewProvider {
     static var previews: some View {
         let artist = Artist(id: UUID().uuidString, mbid: UUID().uuidString, name: "Eminem", listeners: "123212", visitUrl: nil, imageUrl: nil)
-        let viewModel = ArtistAlbumsContentViewModel(artist: artist, networkAPI: NetworkAPIMock(), storeManager: StoreManager())
-        ArtistAlbumsContentView(viewModel: viewModel, coordinatorDelegate: nil)
+        let viewModel = ArtistAlbumsViewModel(artist: artist, networkAPI: NetworkAPIMock(), storeManager: StoreManager())
+        ArtistAlbumsView(viewModel: viewModel, coordinatorDelegate: nil)
     }
 }

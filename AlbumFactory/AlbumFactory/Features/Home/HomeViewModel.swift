@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import RealmSwift
 
-class HomeContentViewModel: ObservableObject {
+class HomeViewModel: ObservableObject {
 
     // MARK: - Properties
     // MARK: Immutable
@@ -16,7 +16,7 @@ class HomeContentViewModel: ObservableObject {
 
     // MARK: Published
 
-    @Published var itemViewModels = [HomeContentItemViewModel]()
+    @Published var itemViewModels = [HomeItemViewModel]()
     
     // MARK: - Initializers
 
@@ -38,7 +38,7 @@ class HomeContentViewModel: ObservableObject {
 
     // MARK: - Actions
 
-    func tappedLikeButton(on itemViewModel: HomeContentItemViewModel) {
+    func tappedLikeButton(on itemViewModel: HomeItemViewModel) {
         storeManager.deleteAlbum(album: itemViewModel.album)
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
     }
@@ -49,6 +49,6 @@ class HomeContentViewModel: ObservableObject {
     private func handleResponse() {
         itemViewModels = storeManager.results.map { Album(persistedAlbum: $0) }
             .filter { $0.name != "(null)" && $0.mbid != nil }
-            .map { HomeContentItemViewModel(album: $0) }
+            .map { HomeItemViewModel(album: $0) }
     }
 }

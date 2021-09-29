@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class ArtistAlbumsContentViewModel: ObservableObject {
+class ArtistAlbumsViewModel: ObservableObject {
 
     // MARK: - Properties
     // MARK: Immutable
@@ -16,7 +16,7 @@ class ArtistAlbumsContentViewModel: ObservableObject {
 
     // MARK: Published
 
-    @Published var itemViewModels = [ArtistAlbumsContentItemViewModel]()
+    @Published var itemViewModels = [ArtistAlbumsItemViewModel]()
 
     // MARK: - Initializers
 
@@ -52,7 +52,7 @@ class ArtistAlbumsContentViewModel: ObservableObject {
 
     // MARK: - Actions
 
-    func tappedLikeButton(on itemViewModel: ArtistAlbumsContentItemViewModel) {
+    func tappedLikeButton(on itemViewModel: ArtistAlbumsItemViewModel) {
         if storeManager.isAlbumStored(album: itemViewModel.album) {
             storeManager.deleteAlbum(album: itemViewModel.album)
                 .sink(
@@ -94,6 +94,6 @@ class ArtistAlbumsContentViewModel: ObservableObject {
     private func handleResponse(_ response: ArtistAlbumsResponse) {
         itemViewModels = response.albums
             .filter { $0.name != "(null)" && $0.mbid != nil }
-            .map { ArtistAlbumsContentItemViewModel(album: $0, storeManager: storeManager) }
+            .map { ArtistAlbumsItemViewModel(album: $0, storeManager: storeManager) }
     }
 }

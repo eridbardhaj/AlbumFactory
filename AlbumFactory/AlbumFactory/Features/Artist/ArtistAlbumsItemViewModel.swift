@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class ArtistAlbumsContentItemViewModel: ObservableObject, Identifiable, Equatable {
+class ArtistAlbumsItemViewModel: ObservableObject, Identifiable, Equatable {
 
     // MARK: - Inner Types
 
@@ -70,7 +70,7 @@ class ArtistAlbumsContentItemViewModel: ObservableObject, Identifiable, Equatabl
     // MARK: - Protocol Conformance
     // MARK: Equatable
 
-    static func == (lhs: ArtistAlbumsContentItemViewModel, rhs: ArtistAlbumsContentItemViewModel) -> Bool {
+    static func == (lhs: ArtistAlbumsItemViewModel, rhs: ArtistAlbumsItemViewModel) -> Bool {
         lhs.album == rhs.album &&
         lhs.likedAlbum == rhs.likedAlbum &&
         lhs.viewState == rhs.viewState

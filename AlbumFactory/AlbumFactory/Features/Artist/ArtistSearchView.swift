@@ -1,20 +1,20 @@
 import SwiftUI
 
-protocol ArtistSearchContentViewDelegate: AnyObject {
-    func artistSearchContentViewDidSelectArtist(artist: Artist)
+protocol ArtistSearchViewDelegate: AnyObject {
+    func artistSearchViewDidSelectArtist(artist: Artist)
 }
 
-struct ArtistSearchContentView: View {
+struct ArtistSearchView: View {
 
     // MARK: - Properties
     // MARK: Mutable
 
-    @ObservedObject private var viewModel: ArtistSearchContentViewModel
-    private weak var coordinatorDelegate: ArtistSearchContentViewDelegate?
+    @ObservedObject private var viewModel: ArtistSearchViewModel
+    private weak var coordinatorDelegate: ArtistSearchViewDelegate?
 
     // MARK: - Initializers
 
-    init(viewModel: ArtistSearchContentViewModel, coordinatorDelegate: ArtistSearchContentViewDelegate?) {
+    init(viewModel: ArtistSearchViewModel, coordinatorDelegate: ArtistSearchViewDelegate?) {
         self.viewModel = viewModel
         self.coordinatorDelegate = coordinatorDelegate
     }
@@ -41,7 +41,7 @@ struct ArtistSearchContentView: View {
                             Spacer()
                         }
                         .onTapGesture {
-                            coordinatorDelegate?.artistSearchContentViewDidSelectArtist(artist: artist)
+                            coordinatorDelegate?.artistSearchViewDidSelectArtist(artist: artist)
                         }
                     }
                 }
@@ -54,7 +54,7 @@ struct ArtistSearchContentView: View {
 
 struct ArtistSearchContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = ArtistSearchContentViewModel(networkAPI: NetworkAPIMock())
-        ArtistSearchContentView(viewModel: viewModel, coordinatorDelegate: nil)
+        let viewModel = ArtistSearchViewModel(networkAPI: NetworkAPIMock())
+        ArtistSearchView(viewModel: viewModel, coordinatorDelegate: nil)
     }
 }

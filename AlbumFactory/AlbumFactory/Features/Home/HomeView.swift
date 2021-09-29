@@ -1,21 +1,21 @@
 import SwiftUI
 
-protocol HomeContentViewDelegate: AnyObject {
-    func homeContentViewDidTapAlbum(album: Album)
-    func homeContentViewDidTapSearchButton()
+protocol HomeViewDelegate: AnyObject {
+    func homeViewDidTapAlbum(album: Album)
+    func homeViewDidTapSearchButton()
 }
 
-struct HomeContentView: View {
+struct HomeView: View {
 
     // MARK: - Properties
     // MARK: Mutable
 
-    @ObservedObject private var viewModel: HomeContentViewModel
-    private weak var coordinatorDelegate: HomeContentViewDelegate?
+    @ObservedObject private var viewModel: HomeViewModel
+    private weak var coordinatorDelegate: HomeViewDelegate?
 
     // MARK: - Initializers
 
-    init(viewModel: HomeContentViewModel, coordinatorDelegate: HomeContentViewDelegate?) {
+    init(viewModel: HomeViewModel, coordinatorDelegate: HomeViewDelegate?) {
         self.viewModel = viewModel
         self.coordinatorDelegate = coordinatorDelegate
     }
@@ -27,10 +27,10 @@ struct HomeContentView: View {
             CollectionView(
                 items: $viewModel.itemViewModels,
                 tapAction: { itemViewModel, _ in
-                    coordinatorDelegate?.homeContentViewDidTapAlbum(album: itemViewModel.album)
+                    coordinatorDelegate?.homeViewDidTapAlbum(album: itemViewModel.album)
                 },
                 itemBuilder: { itemViewModel, _ in
-                    HomeContentItemView(
+                    HomeItemView(
                         viewModel: itemViewModel,
                         likeAction: {
                             viewModel.tappedLikeButton(on: itemViewModel)
@@ -41,7 +41,7 @@ struct HomeContentView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar(content: {
                 Button(action: {
-                    coordinatorDelegate?.homeContentViewDidTapSearchButton()
+                    coordinatorDelegate?.homeViewDidTapSearchButton()
                 }) {
                     Image(systemName: "magnifyingglass")
                 }
@@ -53,7 +53,7 @@ struct HomeContentView: View {
 
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = HomeContentViewModel(networkAPI: NetworkAPIMock(), storeManager: StoreManager())
-        HomeContentView(viewModel: viewModel, coordinatorDelegate: nil)
+        let viewModel = HomeViewModel(networkAPI: NetworkAPIMock(), storeManager: StoreManager())
+        HomeView(viewModel: viewModel, coordinatorDelegate: nil)
     }
 }

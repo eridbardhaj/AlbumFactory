@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class ArtistSearchContentViewModel: ObservableObject {
+class ArtistSearchViewModel: ObservableObject {
 
     // MARK: - Properties
     // MARK: Immutable
