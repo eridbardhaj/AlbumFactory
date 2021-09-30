@@ -65,6 +65,9 @@
 		E8A5482E27050DBF004656E1 /* ArtistSearchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5482D27050DBF004656E1 /* ArtistSearchItemViewModel.swift */; };
 		E8D91BA5270531B70038E9AF /* NetworkAgentTypeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D91BA4270531B70038E9AF /* NetworkAgentTypeMock.swift */; };
 		E8D91BA7270536E90038E9AF /* NetworkKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D91BA6270536E90038E9AF /* NetworkKitTests.swift */; };
+		E8D91BA927053B410038E9AF /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D91BA827053B410038E9AF /* AppCoordinatorTests.swift */; };
+		E8D91BAC27053BB20038E9AF /* UIWindowTypeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D91BAB27053BB20038E9AF /* UIWindowTypeMock.swift */; };
+		E8D91BAF27053DBE0038E9AF /* UINavigationControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D91BAE27053DBE0038E9AF /* UINavigationControllerMock.swift */; };
 		E8D9B4D127047B4900FECFAE /* PersistedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9B4D027047B4900FECFAE /* PersistedAlbum.swift */; };
 		E8FE96D726FD41EF0008FA8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FE96D626FD41EF0008FA8A /* Assets.xcassets */; };
 		E8FE96DA26FD41EF0008FA8A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FE96D926FD41EF0008FA8A /* Preview Assets.xcassets */; };
@@ -157,6 +160,9 @@
 		E8A5482D27050DBF004656E1 /* ArtistSearchItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistSearchItemViewModel.swift; sourceTree = "<group>"; };
 		E8D91BA4270531B70038E9AF /* NetworkAgentTypeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAgentTypeMock.swift; sourceTree = "<group>"; };
 		E8D91BA6270536E90038E9AF /* NetworkKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkKitTests.swift; sourceTree = "<group>"; };
+		E8D91BA827053B410038E9AF /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
+		E8D91BAB27053BB20038E9AF /* UIWindowTypeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowTypeMock.swift; sourceTree = "<group>"; };
+		E8D91BAE27053DBE0038E9AF /* UINavigationControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerMock.swift; sourceTree = "<group>"; };
 		E8D9B4D027047B4900FECFAE /* PersistedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistedAlbum.swift; sourceTree = "<group>"; };
 		E8FE96CF26FD41EC0008FA8A /* AlbumFactory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumFactory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE96D626FD41EF0008FA8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 				E857C31B2703A677004D54DC /* Coordinator.swift */,
 				E857C31D2703A75A004D54DC /* UIWindowType.swift */,
 				E857C31F2703A7C3004D54DC /* UIApplicationType.swift */,
+				E8D91BAA27053B8F0038E9AF /* Mocks */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -368,6 +375,22 @@
 			path = Album;
 			sourceTree = "<group>";
 		};
+		E8D91BAA27053B8F0038E9AF /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E8D91BAB27053BB20038E9AF /* UIWindowTypeMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		E8D91BAD27053DB10038E9AF /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E8D91BAE27053DBE0038E9AF /* UINavigationControllerMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		E8D9B4CE27047AE200FECFAE /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +460,7 @@
 			children = (
 				E808C0262705236200C5A27E /* ImageLoaderTests.swift */,
 				E8D91BA6270536E90038E9AF /* NetworkKitTests.swift */,
+				E8D91BA827053B410038E9AF /* AppCoordinatorTests.swift */,
 			);
 			path = AlbumFactoryTests;
 			sourceTree = "<group>";
@@ -464,6 +488,7 @@
 				E810F2D22704573A00A6E36F /* Spacing.swift */,
 				E8A5482727050654004656E1 /* AppColor.swift */,
 				E8A548292705066D004656E1 /* AppFont.swift */,
+				E8D91BAD27053DB10038E9AF /* Mocks */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -738,11 +763,13 @@
 				E857C31E2703A75A004D54DC /* UIWindowType.swift in Sources */,
 				E8FE970126FD4D210008FA8A /* CollectionView.swift in Sources */,
 				E8859E5D2704F02600B156C5 /* AlbumTrackView.swift in Sources */,
+				E8D91BAF27053DBE0038E9AF /* UINavigationControllerMock.swift in Sources */,
 				E85C05E127011B3B00F582BA /* HTTPMethod.swift in Sources */,
 				E85C06122703C91A00F582BA /* SearchBar.swift in Sources */,
 				E8A548202705004A004656E1 /* AlbumDetailsHeaderView.swift in Sources */,
 				E85C060B2702FE7B00F582BA /* ImageObject.swift in Sources */,
 				E8FE971F2700F46B0008FA8A /* String+Generic.swift in Sources */,
+				E8D91BAC27053BB20038E9AF /* UIWindowTypeMock.swift in Sources */,
 				E85C06002702EAF300F582BA /* NetworkKitTypeMock.swift in Sources */,
 				E8FE970B27000E360008FA8A /* Array+Generic.swift in Sources */,
 				E8D91BA5270531B70038E9AF /* NetworkAgentTypeMock.swift in Sources */,
@@ -763,6 +790,7 @@
 			files = (
 				E808C0272705236200C5A27E /* ImageLoaderTests.swift in Sources */,
 				E8D91BA7270536E90038E9AF /* NetworkKitTests.swift in Sources */,
+				E8D91BA927053B410038E9AF /* AppCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
