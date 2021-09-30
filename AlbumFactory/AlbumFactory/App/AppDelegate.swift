@@ -21,15 +21,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         setupGlobals()
-        
+
+        #if TEST
+        #else
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator = AppCoordinator(
             window: window,
-            application: dependencyResolver.application,
             networkKit: dependencyResolver.networkKit,
             storeManager: dependencyResolver.storeManager
         )
         appCoordinator.start()
+        #endif
 
         return true
     }

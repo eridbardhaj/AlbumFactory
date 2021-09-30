@@ -6,11 +6,11 @@ struct Response<T> {
     let response: URLResponse
 }
 
-protocol Agent {
+protocol NetworkAgentType {
     func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<Response<T>, Error>
 }
 
-class NetworkAgent: Agent {
+class NetworkAgent: NetworkAgentType {
     
     // MARK: - Properties
     // MARK: Injected
