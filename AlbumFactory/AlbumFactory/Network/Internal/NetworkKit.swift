@@ -20,11 +20,11 @@ class NetworkKit: NetworkKitType {
     // MARK: - Properties
     // MARK: Injected
     
-    let agent: Agent
+    let agent: NetworkAgentType
     
     // MARK: - Initializers
     
-    init(agent: Agent) {
+    init(agent: NetworkAgentType) {
         self.agent = agent
     }
     
