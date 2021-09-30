@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ArtistInfoResponse: Decodable {
+public struct ArtistInfoResponse: Decodable, Equatable {
 
     // MARK: - Inner Types
 
@@ -19,5 +19,9 @@ public struct ArtistInfoResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         artist = try values.decode(Artist.self, forKey: .artist)
+    }
+
+    public init(artist: Artist) {
+        self.artist = artist
     }
 }
