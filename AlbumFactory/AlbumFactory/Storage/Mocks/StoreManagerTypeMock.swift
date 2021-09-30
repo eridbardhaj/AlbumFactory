@@ -13,7 +13,6 @@ class StoreManagerTypeMock: StoreManagerType {
     }
 
     class ReturnValue {
-        var results: Results<PersistedAlbum>!
         var isAlbumStored: Bool = false
     }
 
@@ -44,7 +43,7 @@ class StoreManagerTypeMock: StoreManagerType {
     }
 
     var results: Results<PersistedAlbum> {
-        returnValue.results
+        return try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test")).objects(PersistedAlbum.self)
     }
 }
 

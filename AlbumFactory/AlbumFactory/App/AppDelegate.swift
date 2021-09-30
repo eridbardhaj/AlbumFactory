@@ -27,7 +27,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator = AppCoordinator(
             window: window,
-            application: dependencyResolver.application,
             networkKit: dependencyResolver.networkKit,
             storeManager: dependencyResolver.storeManager
         )

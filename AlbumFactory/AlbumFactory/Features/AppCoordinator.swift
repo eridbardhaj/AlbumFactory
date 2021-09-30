@@ -14,9 +14,9 @@ class AppCoordinator: NSObject, Coordinatable {
     // MARK: Injected Dependencies
 
     private let window: UIWindowType?
-    private let application: UIApplicationType
     private let networkKit: NetworkKitType
     private let storeManager: StoreManagerType
+    private let navigationController: UINavigationController
 
     // MARK: Immutable
 
@@ -26,17 +26,16 @@ class AppCoordinator: NSObject, Coordinatable {
 
     var childCoordinators = [UUID: Coordinatable]()
     var dismissable: CoordinatorDismissable?
-    var navigationController = UINavigationController()
 
     // MARK: - Initializers
 
     init(window: UIWindowType?,
-         application: UIApplicationType,
+         navigationController: UINavigationController = UINavigationController(),
          networkKit: NetworkKitType,
          storeManager: StoreManagerType,
          dismissable: CoordinatorDismissable? = nil) {
         self.window = window
-        self.application = application
+        self.navigationController = navigationController
         self.networkKit = networkKit
         self.storeManager = storeManager
         self.dismissable = dismissable
@@ -70,7 +69,7 @@ class AppCoordinator: NSObject, Coordinatable {
     private func showHome() {
         let viewModel = HomeViewModel(networkKit: networkKit, storeManager: storeManager)
         let viewController = UIHostingController(rootView: HomeView(viewModel: viewModel, coordinatorDelegate: self))
-        navigationController.viewControllers = [viewController]
+        navigationController.setViewControllers([viewController], animated: false)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
