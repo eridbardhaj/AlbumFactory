@@ -13,7 +13,9 @@ public struct Track: Decodable, Equatable, Identifiable {
     // MARK: - Properties
     // MARK: Immutable
 
-    public let id = UUID()
+    public var id: String {
+        "\(name) \(duration ?? 0)  \(visitUrl ?? "")"
+    }
     public let name: String
     public let duration: Int?
     public let visitUrl: String?
