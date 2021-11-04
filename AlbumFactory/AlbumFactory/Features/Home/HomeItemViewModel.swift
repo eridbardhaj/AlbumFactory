@@ -2,24 +2,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class HomeItemViewModel: ObservableObject, Identifiable, Equatable {
-
-    // MARK: - Inner Types
-
-    enum ViewState: Equatable {
-        struct HomeItemContent: Equatable {
-            let name: String
-            let imageUrlString: String?
-            let isLiked: Bool
-
-            var systemIconName: String {
-                isLiked ? "heart.fill" : "heart"
-            }
-        }
-
-        case loading
-        case dataLoaded(content: HomeItemContent)
-    }
+class HomeItemViewModel: LikeContentViewModel, Identifiable, Equatable {
 
     // MARK: - Properties
     // MARK: Immutable
@@ -30,22 +13,20 @@ class HomeItemViewModel: ObservableObject, Identifiable, Equatable {
 
     private var cancellables = Set<AnyCancellable>()
 
-    // MARK: Published
-
-    @Published private(set) var viewState: ViewState = .loading
-
     // MARK: - Initializers
 
     init(album: Album) {
         self.album = album
+        super.init(viewState: .loading)
+
         setupObserving()
     }
 
     // MARK: - Setups
 
     private func setupObserving() {
-        viewState = ViewState.dataLoaded(
-            content: ViewState.HomeItemContent(
+        viewState = .dataLoaded(
+            content: .init(
                 name: album.name,
                 imageUrlString: album.imageUrl,
                 isLiked: true
