@@ -35,7 +35,7 @@ class ArtistSearchViewModel: ObservableObject {
     // MARK: - Setups
 
     func start() {
-        $searchText.debounce(for: 1, scheduler: DispatchQueue.main)
+        $searchText.debounce(for: .seconds(1), scheduler: DispatchQueue.main)
             .filter { !$0.isEmpty }
             .flatMap { [unowned self] in self.networkKit.searchArtists(searchKeyword: String($0)) }
             .receive(on: DispatchQueue.main)

@@ -1,58 +1,6 @@
 import SwiftUI
 
-struct HomeItemView: View {
-
-    // MARK: - Properties
-    // MARK: Immutable
-
-    let likeAction: (() -> Void)?
-
-    // MARK: Mutable
-
-    @ObservedObject private var viewModel: HomeItemViewModel
-
-    // MARK: - Initializers
-
-    init(viewModel: HomeItemViewModel, likeAction: (() -> Void)? = nil) {
-        self.viewModel = viewModel
-        self.likeAction = likeAction
-    }
-
-    // MARK: - View Configuration
-
-    var body: some View {
-        Group {
-            switch viewModel.viewState {
-            case .loading:
-                Text("Loading...")
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-            case.dataLoaded(let content):
-                AsyncImage(imageURLString: content.imageUrlString)
-                VStack(alignment: .leading, spacing: Spacing.defaultVertical) {
-                    Spacer()
-                    HStack(alignment: .bottom) {
-                        Text(content.name)
-                            .foregroundColor(Color.white)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(Spacing.defaultEdgeInsets)
-
-                        Button(action: {
-                            likeAction?()
-                        }) {
-                            Image(systemName: content.systemIconName)
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(Color.red)
-                                .padding(Spacing.defaultEdgeInsets)
-                        }
-                    }.background(Color.black.opacity(0.6))
-                }
-            }
-        }
-    }
-}
-
+typealias HomeItemView = LikeContentView<HomeItemViewModel>
 
 struct HomeItemView_Previews: PreviewProvider {
     static var previews: some View {

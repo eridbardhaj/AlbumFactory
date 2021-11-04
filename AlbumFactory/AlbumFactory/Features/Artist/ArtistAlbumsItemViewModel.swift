@@ -2,24 +2,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class ArtistAlbumsItemViewModel: ObservableObject, Identifiable, Equatable {
-
-    // MARK: - Inner Types
-
-    enum ViewState: Equatable {
-        struct ArtistAlbumsItemContent: Equatable {
-            let name: String
-            let imageUrlString: String?
-            let isLiked: Bool
-
-            var systemIconName: String {
-                isLiked ? "heart.fill" : "heart"
-            }
-        }
-
-        case loading
-        case dataLoaded(content: ArtistAlbumsItemContent)
-    }
+class ArtistAlbumsItemViewModel: LikeContentViewModel, Identifiable, Equatable {
 
     // MARK: - Properties
     // MARK: Immutable
@@ -34,13 +17,14 @@ class ArtistAlbumsItemViewModel: ObservableObject, Identifiable, Equatable {
     // MARK: Published
 
     @Published var likedAlbum = false
-    @Published private(set) var viewState: ViewState = .loading
 
     // MARK: - Initializers
 
     init(album: Album, storeManager: StoreManagerType) {
         self.album = album
         self.storeManager = storeManager
+        super.init(viewState: .loading)
+        
         setupObserving()
     }
 
@@ -49,8 +33,8 @@ class ArtistAlbumsItemViewModel: ObservableObject, Identifiable, Equatable {
     private func setupObserving() {
         $likedAlbum
             .map { [unowned self] _ in
-                ViewState.dataLoaded(
-                    content: ViewState.ArtistAlbumsItemContent(
+                .dataLoaded(
+                    content: .init(
                         name: self.album.name,
                         imageUrlString: self.album.imageUrl,
                         isLiked: self.isAlbumLiked
