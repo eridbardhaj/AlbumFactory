@@ -66,6 +66,7 @@ class ArtistAlbumsViewModel: ObservableObject {
 
     private func handleResponse(_ artistInfoResponse: ArtistInfoResponse, artistAlbumResponse: ArtistAlbumsResponse) {
         itemViewModels = artistAlbumResponse.albums
+            .filter { !$0.mbid.isEmpty && $0.mbid != "(null)" }
             .map {
                 var album = $0
                 album.updateArtist(artist: artistInfoResponse.artist)

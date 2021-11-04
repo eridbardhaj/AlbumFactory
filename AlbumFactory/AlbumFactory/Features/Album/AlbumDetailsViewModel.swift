@@ -98,7 +98,7 @@ class AlbumDetailsViewModel: ObservableObject {
     // MARK: - Helpers
 
     private func handleResponse(_ album: Album, isNetworkData: Bool) {
-        if !album.tracks.isEmpty {
+        if !album.tracks.isEmpty && isNetworkData {
             self.album.updateTracks(tracks: album.tracks)
             storeManager.updateAlbumTracks(album: self.album)
         }
